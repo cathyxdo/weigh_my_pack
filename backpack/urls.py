@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from backpack_list.views import item_list
+from backpack_list.views import item_list, backpack_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', item_list, name='item_list')
+    path('', backpack_list, name='backpack_list')
 ]
