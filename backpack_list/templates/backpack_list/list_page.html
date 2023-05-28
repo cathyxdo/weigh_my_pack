@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- <h3>Contents in List: {{ full_details.name }} </h3>
+<ul>
+    {% for category in full_details.categories %}
+    <li>
+        
+        {{ category.name }}
+
+        <ul>
+            {% for item in category.items %}
+            <li>
+                {{ item.name }}
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+ -->
+<h3>Contents in List: {{ full_details.name }} </h3>
+<p>Total Items: {{ full_details.total_qty }}, Total Weight (g): {{ full_details.total_weight }} </p>
+
+<!-- below format is copied from bootstrap -->
+<form>
+    <p>Create New Item</p>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Item Name">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Description">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Weight (g)">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Qty">
+      </div>
+      <select name="category" >
+        <option value="">-----</option>
+        {% for category in full_details.categories %}
+        <option value="">{{ category.name }}</option>
+        {% endfor %}
+      </select>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Add Item</button>
+</form>
+<!-- below format is copied from bootstrap -->
+<form>
+    <p>Create New Category</p>
+
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Category Name">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Category</button>
+</form>
+
+
+{% for category in full_details.categories %}
+<h4>{{ category.name }}</h4>
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Weight(g)</th>
+      <th>Qty</th>
+    </tr>
+
+    {% for item in category.items %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ item.weight }}</td>
+      <td>{{ item.qty }}</td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+        <td></td>
+        <td>Subtotal:</td>
+        <td>{{ category.subtotal_weight }}</td>
+        <td>{{ category.subtotal_qty }}</td>
+    </tr>
+
+  </table>
+{% endfor %}
+
+{% endblock %}
