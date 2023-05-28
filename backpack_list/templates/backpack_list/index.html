@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
+<h3>Your Backpacking Lists</h3>
 <ul>
-    {% for list in lists %}
-        <li>{{ list.name }}</li>
+    {% for list in backpack_list %}
+        <li><a href="{% url 'list_detail' list.id %}" >{{ list.name }}</a></li>
     {% endfor %}
 </ul>
-
+<form>
+    <br>
+    <label for="list_name">Create New Backpacking List</label>
+    <input type="text" id="list_name" name="List_name"><br>
+    <input type="submit" value="Create">
+</form>
 {% endblock %}
 
