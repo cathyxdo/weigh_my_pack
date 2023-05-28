@@ -16,9 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from backpack_list.views import item_list, backpack_list
 
+from backpack_list.views import  list_detail
+
+from backpack_list.views import ListListView, CategoryListView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', backpack_list, name='backpack_list')
+    path('', ListListView.as_view(), name="index"),
+    #path("backpacklist/<int:list_id>/", CategoryListView.as_view(), name = "list_detail")
+    path("backpacklist/<int:id>/", list_detail, name = "list_detail")
 ]
