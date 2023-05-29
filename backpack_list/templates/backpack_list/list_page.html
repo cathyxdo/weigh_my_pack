@@ -23,6 +23,7 @@
 <p>Total Items: {{ full_details.total_qty }}, Total Weight (g): {{ full_details.total_weight }} </p>
 
 <!-- below format is copied from bootstrap -->
+<!-- DONT SHOW UNLESS STUFF IS HERE -->
 <form>
     <p>Create New Item</p>
 
@@ -34,10 +35,10 @@
         <input type="text" class="form-control" placeholder="Description">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Weight (g)">
+        <input type="number" class="form-control" placeholder="Weight (g)">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Qty">
+        <input type="number" class="form-control" placeholder="Qty">
       </div>
       <select name="category" >
         <option value="">-----</option>
