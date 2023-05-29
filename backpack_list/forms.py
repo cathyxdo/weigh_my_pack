@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, Textarea
 from .views import Item, Category, List
 
 class ItemForm(ModelForm):
@@ -19,3 +19,6 @@ class ListForm(ModelForm):
     class Meta:
         model = List
         fields = '__all__'
+        widgets = {
+            'notes': Textarea()
+        }
