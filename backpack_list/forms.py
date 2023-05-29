@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from .views import Item, Category, List
 
-class AddItemForm(ModelForm):
+class ItemForm(ModelForm):
     class Meta:
         model = Item
         fields = '__all__'

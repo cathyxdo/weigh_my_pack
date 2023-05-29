@@ -29,8 +29,8 @@
       <td>{{ item.weight }}</td>
       <td>{{ item.qty }}</td>
       <td>
-        <a href="">Update</a>
-        <a href="">Delete</a>
+        <a href="{% url 'update_item_form' full_details.list_id item.item_id %}">Update</a>
+        <a href="{% url 'delete_item' full_details.list_id item.item_id %}">Delete</a>
       </td>
     </tr>
     {% endfor %}

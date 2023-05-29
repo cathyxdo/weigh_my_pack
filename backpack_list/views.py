@@ -13,7 +13,7 @@ def list_detail(request, list_id):
 # todo_list/todo_app/views.py
 from django.views.generic import ListView, CreateView
 from .models import Item, List, Category
-from .forms import AddItemForm, CategoryForm, ListForm
+from .forms import ItemForm, CategoryForm, ListForm
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
@@ -55,7 +55,8 @@ def list_detail(request, id):
                 'name' : item.name,
                 'description' : item.description,
                 'weight' : item.weight,
-                'qty': item.qty
+                'qty': item.qty,
+                'item_id': item.id 
             }
             item_weight = item.weight*item.qty
             item_list.append(item_detail)
@@ -79,7 +80,7 @@ def list_detail(request, id):
 
 
 def item_form(request, id):
-    form = AddItemForm()
+    form = ItemForm()
     return render(request, 'backpack_list/item_form.html',{'form': form, 'list_id' : id})
 
 def category_form(request, id):
@@ -94,12 +95,17 @@ def update_category_form(request, id, category_id):
     category = Category.objects.get(id=category_id)
     form = CategoryForm(instance = category)
 
-    return render(request, 'backpack_list/category_form_update.html',{'form': form, 'list_id': id})
+    return render(request, 'backpack_list/category_form_update.html',{'form': form, 'list_id': id, 'category_id': category_id})
 
+def update_item_form(request, id, item_id):
+    item = Item.objects.get(id=item_id)
+    form = ItemForm(instance=item)
+
+    return render(request, 'backpack_list/item_form_update.html',{'form': form, 'list_id': id, 'item_id': item_id})
 
 @require_POST
 def add_item(request,id):
-    form = AddItemForm(request.POST)
+    form = ItemForm(request.POST)
     if form.is_valid():
         form.save()
     
@@ -119,8 +125,8 @@ def add_list(request):
     
     return redirect('index')
 
-def update_category(request, id):
-    category = Category.objects.get(id=id)
+def update_category(request, id, category_id):
+    category = Category.objects.get(id=category_id)
     form = CategoryForm(request.POST, instance=category)
 
     if form.is_valid():
@@ -132,4 +138,18 @@ def delete_category(request, id, category_id):
     category = Category.objects.get(id=category_id)
     category.delete()
 
+    return redirect('list_detail', id=id)
+
+def update_item(request, id, item_id):
+    item = Item.objects.get(id=item_id)
+    form = ItemForm(request.POST, instance=item)
+    
+    if form.is_valid():
+        form.save()
+    
+    return redirect('list_detail', id=id)
+
+def delete_item(request, id, item_id):
+    item = Item.objects.get(id=item_id)
+    item.delete()
     return redirect('list_detail', id=id)
