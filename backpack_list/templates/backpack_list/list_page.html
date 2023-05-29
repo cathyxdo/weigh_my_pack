@@ -1,67 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- <h3>Contents in List: {{ full_details.name }} </h3>
-<ul>
-    {% for category in full_details.categories %}
-    <li>
-        
-        {{ category.name }}
-
-        <ul>
-            {% for item in category.items %}
-            <li>
-                {{ item.name }}
-            </li>
-            {% endfor %}
-        </ul>
-    </li>
-    {% endfor %}
-</ul>
- -->
 <h3>Contents in List: {{ full_details.name }} </h3>
 <p>Total Items: {{ full_details.total_qty }}, Total Weight (g): {{ full_details.total_weight }} </p>
 
-<!-- below format is copied from bootstrap -->
-<!-- DONT SHOW UNLESS STUFF IS HERE -->
-<form>
-    <p>Create New Item</p>
-
-    <div class="form-row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Item Name">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Description">
-      </div>
-      <div class="col">
-        <input type="number" class="form-control" placeholder="Weight (g)">
-      </div>
-      <div class="col">
-        <input type="number" class="form-control" placeholder="Qty">
-      </div>
-      <select name="category" >
-        <option value="">-----</option>
-        {% for category in full_details.categories %}
-        <option value="">{{ category.name }}</option>
-        {% endfor %}
-      </select>
-
-    </div>
-    <button type="submit" class="btn btn-primary">Add Item</button>
-</form>
-<!-- below format is copied from bootstrap -->
-<form>
-    <p>Create New Category</p>
-
-    <div class="form-row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Category Name">
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Category</button>
-</form>
-
+<a href="{% url 'item_form' full_details.list_id%}" >Create New Item</a> <br>
+<a href="{% url 'category_form' full_details.list_id%}" >Create New Category</a>
 
 {% for category in full_details.categories %}
 <h4>{{ category.name }}</h4>

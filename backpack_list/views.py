@@ -11,11 +11,14 @@ def list_detail(request, list_id):
     return render(request, 'backpack_list/list_page.html', {'list_id': list_id}) """
 
 # todo_list/todo_app/views.py
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from .models import Item, List, Category
+from .forms import AddItemForm, CategoryForm
+from django.shortcuts import render, redirect
+from django.views.decorators.http import require_POST
 
 
-from django.shortcuts import render
+
 class ListListView(ListView):
     model = List
     context_object_name = 'backpack_list'
@@ -34,6 +37,7 @@ class CategoryListView(ListView):
         return context
 
 def list_detail(request, id):
+
     categories = Category.objects.filter(list_id=id)
     list_name = List.objects.filter(id=id)[0].name
     category_list = []
@@ -71,3 +75,31 @@ def list_detail(request, id):
         'categories': category_list
     }
     return render(request, 'backpack_list/list_page.html', {'full_details': return_dict})
+
+
+
+def item_form(request, id):
+    form = AddItemForm()
+    return render(request, 'backpack_list/item_form.html',{'form': form, 'list_id' : id})
+
+def category_form(request, id):
+    form = CategoryForm()
+    return render(request, 'backpack_list/category_form.html',{'form': form, 'list_id' : id})
+
+
+@require_POST
+def addItem(request,id):
+    form = AddItemForm(request.POST)
+    if form.is_valid():
+        form.save()
+    
+    return redirect('list_detail', id=id)
+
+
+
+def add_category(request,id):
+    form = CategoryForm(request.POST)
+    if form.is_valid():
+        form.save()
+    
+    return redirect('list_detail', id=id)
