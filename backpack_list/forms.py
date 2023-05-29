@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .views import Item, Category
+from .views import Item, Category, List
 
 class AddItemForm(ModelForm):
     class Meta:
@@ -12,4 +12,10 @@ class AddItemForm(ModelForm):
 class CategoryForm(ModelForm):
     class Meta:
         model = Category
+        fields = '__all__'
+
+
+class ListForm(ModelForm):
+    class Meta:
+        model = List
         fields = '__all__'

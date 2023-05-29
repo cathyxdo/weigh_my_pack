@@ -13,7 +13,7 @@ def list_detail(request, list_id):
 # todo_list/todo_app/views.py
 from django.views.generic import ListView, CreateView
 from .models import Item, List, Category
-from .forms import AddItemForm, CategoryForm
+from .forms import AddItemForm, CategoryForm, ListForm
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
@@ -86,6 +86,9 @@ def category_form(request, id):
     form = CategoryForm()
     return render(request, 'backpack_list/category_form.html',{'form': form, 'list_id' : id})
 
+def list_form(request):
+    form = ListForm()
+    return render(request, 'backpack_list/list_form.html',{'form': form})
 
 @require_POST
 def addItem(request,id):
@@ -103,3 +106,10 @@ def add_category(request,id):
         form.save()
     
     return redirect('list_detail', id=id)
+
+def add_list(request):
+    form = ListForm(request.POST)
+    if form.is_valid():
+        form.save()
+    
+    return redirect('index')

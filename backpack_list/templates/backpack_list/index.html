@@ -6,11 +6,8 @@
         <li><a href="{% url 'list_detail' list.id %}" >{{ list.name }}</a></li>
     {% endfor %}
 </ul>
-<form>
-    <br>
-    <label for="list_name">Create New Backpacking List</label>
-    <input type="text" id="list_name" name="List_name"><br>
-    <input type="submit" value="Create">
-</form>
+
+<a href="{% url 'list_form' %}" >Create New List</a>
+
 {% endblock %}
 

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from backpack_list.views import  list_detail, item_form, addItem, category_form, add_category
+from backpack_list.views import  list_detail, item_form, addItem, category_form, add_category, add_list, list_form
 
 from backpack_list.views import ListListView, CategoryListView
 urlpatterns = [
@@ -28,5 +28,8 @@ urlpatterns = [
     path("backpacklist/<int:id>/add_item/", item_form, name = "item_form"),
     path("backpacklist/<int:id>/add_item/add/", addItem, name = "add"),
     path("backpacklist/<int:id>/add_category/", category_form, name = "category_form"),
-    path("backpacklist/<int:id>/add_category/add/", add_category, name = "add_category")
+    path("backpacklist/<int:id>/add_category/add/", add_category, name = "add_category"),
+    path("add_list/",list_form, name = "list_form"),
+    path("add_list/add",add_list, name = "add_list"),
+
 ]
