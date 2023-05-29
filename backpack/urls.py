@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from backpack_list.views import  list_detail, item_form, addItem, category_form, add_category, add_list, list_form
+from backpack_list.views import  list_detail, item_form, add_item, category_form, add_category, add_list, list_form, update_category_form, update_category, delete_category
 
 from backpack_list.views import ListListView, CategoryListView
 urlpatterns = [
@@ -26,10 +26,13 @@ urlpatterns = [
     #path("backpacklist/<int:list_id>/", CategoryListView.as_view(), name = "list_detail")
     path("backpacklist/<int:id>/", list_detail, name = "list_detail"),
     path("backpacklist/<int:id>/add_item/", item_form, name = "item_form"),
-    path("backpacklist/<int:id>/add_item/add/", addItem, name = "add"),
+    path("backpacklist/<int:id>/add_item/add/", add_item, name = "add"),
     path("backpacklist/<int:id>/add_category/", category_form, name = "category_form"),
     path("backpacklist/<int:id>/add_category/add/", add_category, name = "add_category"),
+    path("backpacklist/<int:id>/update_category/<int:category_id>/", update_category_form, name = "update_category_form"),
+    path("backpacklist/<int:id>/update_category/update/", update_category, name = "update_category"),
+    path("backpacklist/<int:id>/delete_category/<int:category_id>/", delete_category, name = "delete_category"),
     path("add_list/",list_form, name = "list_form"),
-    path("add_list/add",add_list, name = "add_list"),
+    path("add_list/add", add_list , name = "add_list"),
 
 ]

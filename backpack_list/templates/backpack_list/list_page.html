@@ -8,13 +8,18 @@
 <a href="{% url 'category_form' full_details.list_id%}" >Create New Category</a>
 
 {% for category in full_details.categories %}
-<h4>{{ category.name }}</h4>
+<h4>
+  {{ category.name }} 
+  <a href="{% url 'update_category_form' full_details.list_id category.category_id %}">Update</a>
+  <a href="{% url 'delete_category' full_details.list_id category.category_id %}">Delete</a>
+</h4>
 <table>
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Weight(g)</th>
       <th>Qty</th>
+      <th></th>
     </tr>
 
     {% for item in category.items %}
@@ -23,6 +28,10 @@
       <td>{{ item.description }}</td>
       <td>{{ item.weight }}</td>
       <td>{{ item.qty }}</td>
+      <td>
+        <a href="">Update</a>
+        <a href="">Delete</a>
+      </td>
     </tr>
     {% endfor %}
 
@@ -31,6 +40,7 @@
         <td>Subtotal:</td>
         <td>{{ category.subtotal_weight }}</td>
         <td>{{ category.subtotal_qty }}</td>
+        <td></td>
     </tr>
 
   </table>

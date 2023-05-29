@@ -90,15 +90,20 @@ def list_form(request):
     form = ListForm()
     return render(request, 'backpack_list/list_form.html',{'form': form})
 
+def update_category_form(request, id, category_id):
+    category = Category.objects.get(id=category_id)
+    form = CategoryForm(instance = category)
+
+    return render(request, 'backpack_list/category_form_update.html',{'form': form, 'list_id': id})
+
+
 @require_POST
-def addItem(request,id):
+def add_item(request,id):
     form = AddItemForm(request.POST)
     if form.is_valid():
         form.save()
     
     return redirect('list_detail', id=id)
-
-
 
 def add_category(request,id):
     form = CategoryForm(request.POST)
@@ -113,3 +118,18 @@ def add_list(request):
         form.save()
     
     return redirect('index')
+
+def update_category(request, id):
+    category = Category.objects.get(id=id)
+    form = CategoryForm(request.POST, instance=category)
+
+    if form.is_valid():
+        form.save()
+    
+    return redirect('list_detail', id=id)
+
+def delete_category(request, id, category_id):
+    category = Category.objects.get(id=category_id)
+    category.delete()
+
+    return redirect('list_detail', id=id)
