@@ -105,6 +105,12 @@ def update_item_form(request, id, item_id):
 
     return render(request, 'backpack_list/item_form_update.html',{'form': form, 'list_id': id, 'item_id': item_id})
 
+def update_list_form(request, id):
+    list = List.objects.get(id=id)
+    form = ListForm(instance=list)
+
+    return render(request,'backpack_list/list_form_update.html',{'form': form, 'list_id': id})
+
 @require_POST
 def add_item(request,id):
     form = ItemForm(request.POST)
@@ -151,7 +157,23 @@ def update_item(request, id, item_id):
     
     return redirect('list_detail', id=id)
 
+def update_list(request, id):
+    list = List.objects.get(id=id)
+    form = ListForm(request.POST, instance=list)
+    
+    if form.is_valid():
+        form.save()
+    
+    return redirect('list_detail', id=id)
+
+
 def delete_item(request, id, item_id):
     item = Item.objects.get(id=item_id)
     item.delete()
     return redirect('list_detail', id=id)
+
+
+def delete_list(request, id):
+    list = List.objects.get(id=id)
+    list.delete()
+    return(redirect('index'))

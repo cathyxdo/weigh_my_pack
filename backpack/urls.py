@@ -17,13 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from backpack_list.views import  list_detail, item_form, add_item, category_form, add_category, add_list, list_form, update_category_form, update_category, delete_category, update_item_form, delete_item, update_item
+from backpack_list.views import  list_detail, item_form, add_item, category_form, add_category, add_list, list_form, update_category_form, update_category, delete_category, update_item_form, delete_item, update_item, delete_list, update_list, update_list_form
 
 from backpack_list.views import ListListView, CategoryListView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ListListView.as_view(), name="index"),
     path("backpacklist/<int:id>/", list_detail, name = "list_detail"),
+    path("backpacklist/update_list/<int:id>/", update_list_form, name = "update_list_form"),
+    path("backpacklist/update_list/<int:id>/update", update_list, name = "update_list"),
+    path("backpacklist/delete/<int:id>/", delete_list, name = "delete_list"),
 
     path("backpacklist/<int:id>/add_item/", item_form, name = "item_form"),
     path("backpacklist/<int:id>/add_item/add/", add_item, name = "add"),

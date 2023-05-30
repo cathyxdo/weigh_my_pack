@@ -3,6 +3,7 @@
 
 <h3>Contents in List: {{ full_details.name }} </h3>
 <p>Notes: {{ full_details.notes }}</p>
+<a href="{% url 'update_list_form' full_details.list_id %}">Update List Info</a> <br>
 <p>Total Items: {{ full_details.total_qty }}, Total Weight (g): {{ full_details.total_weight }} </p>
 
 <a href="{% url 'item_form' full_details.list_id%}" >Create New Item</a> <br>
