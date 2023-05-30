@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h3>Contents in List: {{ full_details.name }} </h3>
+<h3 id="test">Contents in List: {{ full_details.name }} </h3>
 <p>Notes: {{ full_details.notes }}</p>
 <a href="{% url 'update_list_form' full_details.list_id %}">Update List Info</a> <br>
 <p>Total Items: {{ full_details.total_qty }}, Total Weight (g): {{ full_details.total_weight }} </p>
@@ -9,12 +9,18 @@
 <a href="{% url 'item_form' full_details.list_id%}" >Create New Item</a> <br>
 <a href="{% url 'category_form' full_details.list_id%}" >Create New Category</a>
 
+
+
+<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+
+
 {% for category in full_details.categories %}
-<h4>
-  {{ category.name }} 
+<div>
+  <h4 class="category-name"> {{ category.name }} </h4>
   <a href="{% url 'update_category_form' full_details.list_id category.category_id %}">Update</a>
   <a href="{% url 'delete_category' full_details.list_id category.category_id %}">Delete</a>
-</h4>
+</div>
+
 <table>
     <tr>
       <th>Name</th>
@@ -40,12 +46,52 @@
     <tr>
         <td></td>
         <td>Subtotal:</td>
-        <td>{{ category.subtotal_weight }}</td>
+        <td class="subtotal-weight">{{ category.subtotal_weight }}</td>
         <td>{{ category.subtotal_qty }}</td>
         <td></td>
     </tr>
 
   </table>
 {% endfor %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script>
+  let categories = document.getElementsByClassName("category-name");
+  let subtotals = document.getElementsByClassName("subtotal-weight"); 
+  const chart_labels = [];
+  const chart_data = [];
+  
+  for (let i = 0; i <categories.length; i++) {
+      chart_labels.push(categories[i].innerHTML);
+  }
+
+  for (let i = 0; i <subtotals.length; i++) {
+      chart_data.push(subtotals[i].innerHTML);
+  }
+  
+  var barColors = ["red", "green","blue"];
+  
+  new Chart("myChart", {
+    type: "doughnut",
+    data: {
+      labels: chart_labels,
+      datasets: [{
+        backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)'
+      ],
+        data: chart_data
+      }],
+      hoverOffset: 4
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Weight by Category"
+      }
+    }
+  });
+</script>
 
 {% endblock %}

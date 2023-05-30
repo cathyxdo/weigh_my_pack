@@ -17,7 +17,7 @@ from .forms import ItemForm, CategoryForm, ListForm
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 
-
+from json import dumps
 
 class ListListView(ListView):
     model = List
@@ -45,6 +45,10 @@ def list_detail(request, id):
     total_weight = 0
     total_qty = 0
 
+    chart_labels = []
+    chart_data = []
+
+
     for category in categories:
         items = Item.objects.filter(category_id=category.id)
         item_list = []
@@ -69,13 +73,20 @@ def list_detail(request, id):
         total_weight += subtotal_weight
         total_qty += subtotal_qty
 
+        chart_labels.append(category.name)
+        chart_data.append(subtotal_weight)
+
+    json_string = dumps(chart_labels)
     return_dict = {
         'list_id': id,
         'name': list_name,
         'notes': list_notes,
         'total_weight': total_weight,
         'total_qty': total_qty,
-        'categories': category_list
+        'categories': category_list,
+        'chart_labels': chart_labels,
+        'chart_data': chart_data,
+        'json_string': json_string
     }
     return render(request, 'backpack_list/list_page.html', {'full_details': return_dict})
 
