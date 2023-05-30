@@ -17,7 +17,7 @@ class Item(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     weight = models.FloatField()
-    qty = models.IntegerField()
+    qty = models.IntegerField(default=1)
     link = models.URLField(null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     

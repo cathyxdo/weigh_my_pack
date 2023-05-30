@@ -40,6 +40,7 @@ def list_detail(request, id):
 
     categories = Category.objects.filter(list_id=id)
     list_name = List.objects.filter(id=id)[0].name
+    list_notes = List.objects.filter(id=id)[0].notes
     category_list = []
     total_weight = 0
     total_qty = 0
@@ -71,6 +72,7 @@ def list_detail(request, id):
     return_dict = {
         'list_id': id,
         'name': list_name,
+        'notes': list_notes,
         'total_weight': total_weight,
         'total_qty': total_qty,
         'categories': category_list
