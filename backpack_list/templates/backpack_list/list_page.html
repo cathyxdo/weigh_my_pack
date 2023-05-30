@@ -58,30 +58,35 @@
 <script>
   let categories = document.getElementsByClassName("category-name");
   let subtotals = document.getElementsByClassName("subtotal-weight"); 
-  const chart_labels = [];
-  const chart_data = [];
-  
+  const chartLabels = [];
+  const chartData = [];
+  const colorPalette = ['#00b894','#ffeaa7','#fab1a0','#00cec9','#ff7675','#fd79a8','#0984e3','#6c5ce7','#b2bec3','#636e72'];
+  const colorPaletteLength = colorPalette.length; // 10
+
+  const chartColors = [];
   for (let i = 0; i <categories.length; i++) {
-      chart_labels.push(categories[i].innerHTML);
+      chartLabels.push(categories[i].innerHTML);
+
+      if (i < colorPaletteLength) {
+        chartColors.push(colorPalette[i]);
+      } else {
+        chartColors.push(colorPalette[i % colorPaletteLength]);
+      }
   }
 
   for (let i = 0; i <subtotals.length; i++) {
-      chart_data.push(subtotals[i].innerHTML);
+      chartData.push(subtotals[i].innerHTML);
   }
-  
-  var barColors = ["red", "green","blue"];
-  
+
+
+
   new Chart("myChart", {
     type: "doughnut",
     data: {
-      labels: chart_labels,
+      labels: chartLabels,
       datasets: [{
-        backgroundColor: [
-        'rgb(255, 99, 132)',
-        'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)'
-      ],
-        data: chart_data
+        backgroundColor: chartColors,
+        data: chartData
       }],
       hoverOffset: 4
     },
