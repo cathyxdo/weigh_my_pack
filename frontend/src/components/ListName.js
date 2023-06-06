@@ -1,8 +1,8 @@
 
-export default function ListName(props) {
-    
+export default function ListName({id, name, onSelect}) {
+
     return (
-        <li onClick={props.clickList} value={props.id}>{props.name}</li>
+        <li value={id} onClick={(e) => onSelect(e.target.value)}>{name}</li>
     
     )
 }

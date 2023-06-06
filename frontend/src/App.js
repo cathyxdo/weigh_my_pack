@@ -1,54 +1,47 @@
 import {lists} from './data.js';
 import {useState} from 'react';
-import ListName from "./components/ListName";
+import EditIcon from "./components/EditIcon";
+import Menu from "./components/Menu";
 
 function App() {
   const [id, setId] = useState(0);    // show first list by default
 
-  function handleClick(event) {
-    setId(event.target.value);
+  function handleClick(index) {
+    setId(index);
   }
 
-  function List() {
-    return (
-    <ul>
-      {lists.map((list) => (
-      <ListName key={list.id} id={list.id} name={list.name} clickList={handleClick}/>
-    ))}
-    <button>Add List</button>
-
-    </ul>
-    )
-}
 
   function ListDetails() {
     const categories = lists[id].categories;
+    const [visible, setVisibility] = useState("hidden");
     return (
-      <ul>
-        <li >{lists[id].name}</li>
-        <ul>
+      <div className="fullDetails">
+        <header>
+          <h2 onMouseOver={()=> setVisibility("visible")} onMouseLeave={() => setVisibility("hidden")}>{lists[id].name} <EditIcon show={visible}/></h2> 
+        </header>
+        <div>
           {categories.map((category) => (
-            <>
-              <li>{category.name}</li>
+          <div className="categorySection">
+              <h3>{category.name} </h3>
               <ul>
                 {category.items.map((item) => (
-                 <li> {item.name}, {item.description}, {item.weight}g, {item.qty}</li>
+                <li> {item.name}, {item.description}, {item.weight}g, {item.qty}</li>
               ))}
               </ul>
               <form>
                 <input type='text' placeholder="name"></input>
-                <input type='text' placeHolder="description"></input>
-                <input type='number' placeHolder="weight in g"></input>
-                <input type='number' placeHolder="qty"></input>
+                <input type='text' placeholder="description"></input>
+                <input type='number' placeholder="weight in g"></input>
+                <input type='number' placeholder="qty"></input>
 
               </form>
               <button>Add Item</button>
 
-            </>
+            </div>
           ))}
           <button>Add Category</button>
-        </ul>
-      </ul>
+        </div>
+      </div>
     )
   }
 
@@ -56,8 +49,9 @@ function App() {
     
     <div className="App">
       <h1>Packer List</h1>
-      <List />
+      <Menu lists={lists} onSelectList={handleClick}/>
       <ListDetails />
+      
     </div>
 
   );
