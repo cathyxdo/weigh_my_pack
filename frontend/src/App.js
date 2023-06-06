@@ -2,6 +2,7 @@ import {lists} from './data.js';
 import {useState} from 'react';
 import EditIcon from "./components/EditIcon";
 import Menu from "./components/Menu";
+import ListDetails from './components/ListDetails.js';
 
 function App() {
   const [id, setId] = useState(0);    // show first list by default
@@ -11,7 +12,7 @@ function App() {
   }
 
 
-  function ListDetails() {
+  function ListDetails2() {
     const categories = lists[id].categories;
     const [visible, setVisibility] = useState("hidden");
     return (
@@ -50,7 +51,8 @@ function App() {
     <div className="App">
       <h1>Packer List</h1>
       <Menu lists={lists} onSelectList={handleClick}/>
-      <ListDetails />
+      <ListDetails list={lists[id]} />
+      <ListDetails2 />
       
     </div>
 
