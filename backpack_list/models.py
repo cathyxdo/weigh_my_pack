@@ -9,7 +9,7 @@ class List(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    list = models.ForeignKey(List, on_delete=models.CASCADE)
+    list = models.ForeignKey(List, related_name='categories', on_delete=models.CASCADE)
     def __str__(self):
         return self.name
 
@@ -19,7 +19,7 @@ class Item(models.Model):
     weight = models.FloatField()
     qty = models.IntegerField(default=1)
     link = models.URLField(null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name

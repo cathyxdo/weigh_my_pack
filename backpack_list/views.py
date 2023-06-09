@@ -1,21 +1,49 @@
-""" from django.shortcuts import render
-from .models import Item, List, Category
-
-# Create your views here.
-def backpack_list(request):
-    lists = List.objects.all()
-    return render(request, 'backpack_list/index.html', {'lists': lists})
-
-def list_detail(request, list_id):
-
-    return render(request, 'backpack_list/list_page.html', {'list_id': list_id}) """
-
 # todo_list/todo_app/views.py
 from django.views.generic import ListView, CreateView
 from .models import Item, List, Category
 from .forms import ItemForm, CategoryForm, ListForm
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
+
+#NEW STUFF ADDED FOR API 
+from .serializers import ListSerializer, CategorySerializer, ItemSerializer
+from rest_framework import generics
+from rest_framework.decorators import api_view
+from rest_framework import status
+from rest_framework.response import Response
+from django.http import Http404
+
+
+class ListList(generics.ListCreateAPIView):
+    queryset = List.objects.all()
+    serializer_class = ListSerializer
+class ModifyCategory(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+class ModifyItem(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+class CreateCategory(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+class CreateItem(generics.ListCreateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+
+@api_view(['POST'])
+def add_new_category(request, pk):
+    list = List.objects.get(id=pk)
+    
+    serializer_list = ListSerializer(list, many=False)
+    print(serializer_list['categories'])
+    serializer_list['categories'].append(CategorySerializer(data=request.data))
+
+    if serializer_list.is_valid():
+        serializer_list.save()
+    
+    return Response(serializer_list.data)
+
+#END
 
 from json import dumps
 
