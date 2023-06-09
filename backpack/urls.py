@@ -20,6 +20,8 @@ from django.urls import path, include
 from backpack_list.views import  list_detail, item_form, add_item, category_form, add_category, add_list, list_form, update_category_form, update_category, delete_category, update_item_form, delete_item, update_item, delete_list, update_list, update_list_form
 
 from backpack_list.views import ListListView, CategoryListView
+from backpack_list.views import ListList, ModifyCategory, ModifyItem, CreateCategory, CreateItem
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ListListView.as_view(), name="index"),
@@ -45,4 +47,9 @@ urlpatterns = [
     path("add_list/",list_form, name = "list_form"),
     path("add_list/add", add_list , name = "add_list"),
 
+    path("api/lists", ListList.as_view()),
+    path("api/category/<int:pk>/", ModifyCategory.as_view()),
+    path("api/category/", CreateCategory.as_view()),
+    path("api/item/<int:pk>/", ModifyItem.as_view()),
+    path("api/item/", CreateItem.as_view()),
 ]
