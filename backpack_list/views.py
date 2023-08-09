@@ -17,6 +17,9 @@ from django.http import Http404
 class ListList(generics.ListCreateAPIView):
     queryset = List.objects.all()
     serializer_class = ListSerializer
+class SingleList(generics.RetrieveUpdateDestroyAPIView):
+    queryset = List.objects.all()
+    serializer_class = ListSerializer
 class ModifyCategory(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
