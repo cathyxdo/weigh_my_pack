@@ -6,7 +6,7 @@ import ListDetails from './components/ListDetails.js';
 import ModalNewList from './components/ModalNewList.js';
 import ModalDeleteCategory from './components/ModalDeleteCategory.js';
 import axios from 'axios';
-
+import axiosInstance from './axios.js';
 function App() {
   const [id, setId] = useState(0);    // show first list by default
   // const [listName, setListName] = useState('');
@@ -26,7 +26,7 @@ function App() {
 
 
   useEffect(() => {
-    axios.get('/api/lists')
+    axiosInstance.get('lists/')
     .then(result => {
       setApiList(result.data);
       setCurrentListName(result.data[0].name);
@@ -68,7 +68,7 @@ function App() {
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="rotate(180 12 12)"><path fill="currentColor" d="M13.925 19q-.625 0-.888-.537t.088-1.038L17 12l-3.875-5.425q-.35-.5-.088-1.038T13.925 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.288t-.15.287l-4.225 5.95q-.15.2-.375.338t-.5.137Zm-5.95 0q-.625 0-.887-.537t.087-1.038L11.05 12L7.175 6.575q-.35-.5-.087-1.038T7.975 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.3t-.15.275l-4.225 5.95q-.15.2-.375.338t-.5.137Z"></path></g></svg>
             </button>
           </span>
-          
+
           <Menu apiList={apiList} setApiList={setApiList} onSelectList={handleClick} selectedIndex={id}/>
 {/*           <form onSubmit={handleSubmit}>
             <input type="text" name="listName" value={listName} onChange={handleChange}/>
