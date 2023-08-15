@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import axiosInstance from "../axios";
 
 export default function ModalNewList({showModal, setApiList, apiList}) {
-    const emptyListData = {name: '', notes:''}
+    const emptyListData = {name: '', notes:'', creator: '1'}
     const [listData, setListData] = useState(emptyListData);
 
     function handleChange(event) {
@@ -16,7 +17,7 @@ export default function ModalNewList({showModal, setApiList, apiList}) {
     function handleSubmit(event) {
         event.preventDefault();
 
-        axios.post('/api/lists/', listData)
+        axiosInstance.post('lists/', listData)
         .then(result => {
           console.log(result.data);
           setApiList([
