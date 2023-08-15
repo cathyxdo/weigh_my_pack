@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import *
+from users.models import NewUser
+
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,7 +25,7 @@ class ListSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True, read_only=True)
     class Meta:
         model = List
-        fields = ['id','name', 'notes', 'categories', 'creator']
+        fields = ['id','name', 'notes', 'categories']
 """     def create(self, validated_data):
         category_stuff = validated_data.pop('categories')
         new_list = List.objects.create(**validated_data)
@@ -31,3 +33,8 @@ class ListSerializer(serializers.ModelSerializer):
             Category.objects.create(**i, list=new_list)
         return new_list """
     
+class UserSerializer(serializers.ModelSerializer):
+    lists = ListSerializer(many=True, read_only=True)
+    class Meta:
+        model = NewUser
+        fields = ('email', 'id', 'user_name', 'first_name', 'lists')
