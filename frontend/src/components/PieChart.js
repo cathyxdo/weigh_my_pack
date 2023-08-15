@@ -11,12 +11,10 @@ export default function PieChart({apiList, selectedIndex}) {
             
         }
         total = total+subtotalWeight;
-        console.log(subtotalWeight);
         categorySubtotals.push({name: name, subtotalWeight: subtotalWeight});
     }
 
 
-    console.log(categorySubtotals);
 
     return (
         <div className="chart-details"> 
