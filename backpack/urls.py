@@ -20,7 +20,7 @@ from django.urls import path, include
 from backpack_list.views import  list_detail, item_form, add_item, category_form, add_category, add_list, list_form, update_category_form, update_category, delete_category, update_item_form, delete_item, update_item, delete_list, update_list, update_list_form
 
 from backpack_list.views import ListListView, CategoryListView
-from backpack_list.views import ListList, ModifyCategory, ModifyItem, CreateCategory, CreateItem, SingleList
+from backpack_list.views import ListList, ModifyCategory, ModifyItem, CreateCategory, CreateItem, SingleList, UserListView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -51,11 +51,13 @@ urlpatterns = [
     path("add_list/add", add_list , name = "add_list"),
 
     path("api/lists/", ListList.as_view()),
+    path("api/users/lists", UserListView.as_view()),
+
     path("api/lists/<int:pk>/", SingleList.as_view()),
-    path("api/category/<int:pk>/", ModifyCategory.as_view()),
-    path("api/category/", CreateCategory.as_view()),
-    path("api/item/<int:pk>/", ModifyItem.as_view()),
-    path("api/item/", CreateItem.as_view()),
+    path("api/categories/<int:pk>/", ModifyCategory.as_view()),
+    path("api/categories/", CreateCategory.as_view()),
+    path("api/items/<int:pk>/", ModifyItem.as_view()),
+    path("api/items/", CreateItem.as_view()),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/user/', include('users.urls', namespace='users')),
