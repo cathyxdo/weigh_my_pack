@@ -23,7 +23,7 @@ class ListSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True, read_only=True)
     class Meta:
         model = List
-        fields = ['id','name', 'notes', 'categories']
+        fields = ['id','name', 'notes', 'categories', 'creator']
 """     def create(self, validated_data):
         category_stuff = validated_data.pop('categories')
         new_list = List.objects.create(**validated_data)
