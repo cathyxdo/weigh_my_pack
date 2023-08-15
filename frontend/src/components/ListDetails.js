@@ -3,7 +3,7 @@ import { useState } from 'react';
 import EditIcon from './EditIcon';
 import PieChart from "./PieChart";
 import axios from "axios";
-
+import Header from "./Header";
 
 export default function ListDetails({apiList, listName, selectedIndex, handleNameChange, setApiList, setDeleteCategoryModal, showSideBar}) {
   const list = apiList[selectedIndex];
@@ -66,9 +66,11 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
 
   return (
     <div className={"listDetails " + (showSideBar ? 'showBar' : 'hideBar' )}>
+      <Header />
+
       {list && (
       <div>
-        
+
         <header>
           {!isEditing && 
             <h2>
