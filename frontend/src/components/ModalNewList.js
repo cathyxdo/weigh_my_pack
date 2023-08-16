@@ -3,7 +3,7 @@ import axios from "axios";
 import axiosInstance from "../axios";
 
 export default function ModalNewList({showModal, setApiList, apiList}) {
-    const emptyListData = {name: '', notes:'', creator: '1'}
+    const emptyListData = {name: '', notes:''}
     const [listData, setListData] = useState(emptyListData);
 
     function handleChange(event) {
