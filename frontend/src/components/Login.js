@@ -21,7 +21,6 @@ export default function Login() {
 		.then((result) => {
 				localStorage.setItem('access_token', result.data.access);
 				localStorage.setItem('refresh_token', result.data.refresh);
-                localStorage.setItem('user',JSON.stringify(result.data));
 				axiosInstance.defaults.headers['Authorization'] =
 					'JWT ' + localStorage.getItem('access_token');
                 console.log(result);
@@ -31,7 +30,7 @@ export default function Login() {
     return (
 
         <div className="LoginForm">
-            <form action="" class="form">
+            <form action="" className="form">
                 <h1 class="title">Login</h1>
     
                 <div className="inputContainer">
