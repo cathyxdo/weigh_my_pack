@@ -4,9 +4,10 @@ from .models import Item, List, Category
 from .forms import ItemForm, CategoryForm, ListForm
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
+from users.models import NewUser
 
 #NEW STUFF ADDED FOR API 
-from .serializers import ListSerializer, CategorySerializer, ItemSerializer
+from .serializers import ListSerializer, CategorySerializer, ItemSerializer, UserSerializer
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -14,12 +15,20 @@ from rest_framework.response import Response
 from django.http import Http404
 from rest_framework.permissions import IsAuthenticated
 
+class UserListView(generics.ListCreateAPIView):
 
+    queryset = NewUser.objects.all()
+    serializer_class = UserSerializer
 
 class ListList(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = List.objects.all()
     serializer_class = ListSerializer
+    def get_queryset(self):
+        user = self.request.user
+        return List.objects.filter(creator=user)
+    def perform_create(self, serializer):
+        serializer.save(creator=self.request.user)
 class SingleList(generics.RetrieveUpdateDestroyAPIView):
     queryset = List.objects.all()
     serializer_class = ListSerializer
