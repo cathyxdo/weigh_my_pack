@@ -21,7 +21,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.patch('/api/item/' + item.id + '/', itemData)
+        axios.patch('/api/items/' + item.id + '/', itemData)
         .then(result => {
             setApiList(apiList.map((list, index) => {
                 if (index === selectedIndex) {
@@ -57,7 +57,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
 
     function handleDelete(event) {
         event.preventDefault();
-        axios.delete('/api/item/' + item.id + '/')
+        axios.delete('/api/items/' + item.id + '/')
         .then(result => {
             setApiList(apiList.map((list, index) => {
                 if (index === selectedIndex) {
