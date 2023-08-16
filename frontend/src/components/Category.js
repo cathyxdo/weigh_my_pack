@@ -29,7 +29,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
 
     function handleSubmitItem(event) {
         event.preventDefault();
-        axios.post('/api/item/', itemData)
+        axios.post('/api/items/', itemData)
         .then(result => {
             setApiList(apiList.map((list,index) => {
                 if (index === selectedIndex) {
@@ -66,7 +66,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
 
     function handleSubmitCategory(event) {
         event.preventDefault();
-        axios.patch('/api/category/' + category.id + '/', {name: categoryName})
+        axios.patch('/api/categories/' + category.id + '/', {name: categoryName})
         .then(result => {
             setApiList(apiList.map((list, index) => {
                 if (index === selectedIndex) {
@@ -92,7 +92,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
 
     function handleDeleteCategory(event) {
         event.preventDefault();
-        axios.delete('/api/category/' + category.id + '/')
+        axios.delete('/api/categories/' + category.id + '/')
         .then(result => {
             setApiList(apiList.map((list, index) => {
                 if(index === selectedIndex) {

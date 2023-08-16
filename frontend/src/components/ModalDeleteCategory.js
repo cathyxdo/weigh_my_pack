@@ -3,7 +3,7 @@ export default function ModalDeleteCategory({categoryId, selectedIndex, setDelet
 
     function handleDeleteCategory(event) {
         event.preventDefault();
-        axios.delete('/api/category/' + categoryId + '/')
+        axios.delete('/api/categories/' + categoryId + '/')
         .then(result => {
             setApiList(apiList.map((list, index) => {
                 if(index === selectedIndex) {

@@ -20,7 +20,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
   function handleSubmit(event) {
     event.preventDefault();
     const data = {name: newCategory, list: list.id};
-    axios.post('/api/category/', data)
+    axios.post('/api/categories/', data)
     .then(result => {
       setApiList(apiList.map((list, index) =>{
         if(index === selectedIndex) {
