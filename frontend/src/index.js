@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 //import './simple.css';
 import './index.css';
 import Login from './components/Login';
+import ChangePassword from './components/ChangePassword';
 import App from './App';
 import PageNotFound from './components/PageNotFound';
 import reportWebVitals from './reportWebVitals';
@@ -24,6 +25,7 @@ root.render(
           <Route path="/" element={<App />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="changepassword" element={<ChangePassword />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
