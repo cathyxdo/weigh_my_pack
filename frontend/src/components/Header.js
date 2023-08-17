@@ -19,6 +19,7 @@ export default function Header() {
         <>
             <Link to="/signup"><button className="secondary-button">Sign Up</button></Link>
             <Link to="/login"><button className="primary-button">Login</button></Link>
+            <Link to="/changepassword">Change Password</Link>
             <button className="primary-button" onClick={logout}>Logout</button>
         </>
     )
