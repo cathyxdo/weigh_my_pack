@@ -1,7 +1,7 @@
 import Category from "./Category";
 import { useState } from 'react';
 import EditIcon from './EditIcon';
-import PieChart from "./PieChart";
+import ChartSection from "./ChartSection";
 import axios from "axios";
 import Header from "./Header";
 
@@ -88,7 +88,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
             </h2>
           }      
         </header>
-        <PieChart  selectedIndex={selectedIndex} apiList={apiList}/>
+        <ChartSection  selectedIndex={selectedIndex} apiList={apiList}/>
 
         {list.categories.map((category) => 
         <Category key={category.id} category={category} apiList={apiList} setApiList={setApiList} selectedIndex={selectedIndex} setDeleteCategoryModal={setDeleteCategoryModal}/>)}

@@ -28,7 +28,7 @@ export default function ChangePassword() {
     return (
         <div className="ChangePasswordForm">
             <form action="" className="form">
-                <h1 class="title">Login</h1>
+                <h1 class="title">Change Password</h1>
     
                 <div className="inputContainer">
                     <label htmlFor="old_password" className="label">Old Password</label>

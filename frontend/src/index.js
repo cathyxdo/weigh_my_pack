@@ -23,9 +23,9 @@ root.render(
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<App />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="changepassword" element={<ChangePassword />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/changepassword" element={<ChangePassword />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

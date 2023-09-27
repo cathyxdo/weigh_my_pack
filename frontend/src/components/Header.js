@@ -4,7 +4,7 @@ import axiosInstance from "../axios";
 
 export default function Header() {
     const navigate = useNavigate();
-    function logout() {
+    function logout(event) {
         console.log('logout');
         const response = axiosInstance.post('user/logout/blacklist/', {
 			refresh_token: localStorage.getItem('refresh_token'),
