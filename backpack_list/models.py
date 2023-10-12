@@ -17,9 +17,17 @@ class Category(models.Model):
         return self.name
 
 class Item(models.Model):
+    WEIGHT_UOM_CHOICES = [
+        ('g', 'g'),
+        ('kg', 'kg'),
+        ('lb', 'lb'),
+        ('oz', 'oz'),
+    ]
+
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     weight = models.FloatField()
+    weight_uom = models.CharField(max_length=2, choices=WEIGHT_UOM_CHOICES, default='oz')
     qty = models.IntegerField(default=1)
     link = models.URLField(null=True, blank=True)
     category = models.ForeignKey(Category, related_name='items', on_delete=models.CASCADE)

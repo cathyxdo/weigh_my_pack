@@ -6,7 +6,7 @@ from users.models import NewUser
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ['id','name', 'description', 'weight', 'qty', 'link', 'category']
+        fields = ['id','name', 'description', 'weight', 'weight_uom', 'qty', 'link', 'category']
 
 class CategorySerializer(serializers.ModelSerializer):
     items = ItemSerializer(many=True, read_only=True)
