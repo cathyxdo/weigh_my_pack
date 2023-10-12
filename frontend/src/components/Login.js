@@ -47,7 +47,7 @@ export default function Login() {
 
                 <input type="submit" className="primary-button" value="Login" onClick={handleSubmit} />
                 <div>
-                    <a href="">Forgot password?</a>
+                <Link to="/forgot-password">Forgot password?</Link>
                 </div>
                 <div>
                     <Link to="/signup">Sign Up</Link>
