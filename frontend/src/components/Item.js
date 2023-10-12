@@ -7,6 +7,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         name: item.name,
         description: item.description ? item.description : '',
         weight: item.weight,
+        weight_uom: item.weight_uom,
         qty: item.qty,
         link: item.link ? item.link : ''    
     }
@@ -97,7 +98,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                     {item.description}
                 </td>
                 <td>
-                    {item.weight}
+                    {item.weight + ' ' + item.weight_uom}
                 </td>
                 <td>
                     {item.qty}

@@ -8,6 +8,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
         name: '',
         description: '',
         weight: 0,
+        weight_uom: 'oz',
         qty: 1,
         link: '',
         category: category.id 
@@ -139,7 +140,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Weight(g)</th>
+                        <th>Weight</th>
                         <th>Qty</th>
                         <th></th>
                     </tr>
@@ -162,8 +163,11 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
                         </span>
                         <span>
                             <label htmlFor="uom">Uom</label>
-                            <select name="uom">
+                            <select name="weight_uom" value={itemData.weight_uom} onChange={handleChange}>
+                                <option value="oz">oz</option>
+                                <option value="lb">lb</option>
                                 <option value="g">g</option>
+                                <option value="kg">kg</option>
                             </select>
                         </span>
                     </div>
