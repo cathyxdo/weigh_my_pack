@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Login from './components/Login';
 import ChangePassword from './components/ChangePassword';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 import App from './App';
 import PageNotFound from './components/PageNotFound';
 import reportWebVitals from './reportWebVitals';
@@ -26,6 +28,8 @@ root.render(
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/changepassword" element={<ChangePassword />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:uidb64/:token" element={<ResetPassword />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
