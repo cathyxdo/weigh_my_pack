@@ -1,6 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 import { useState } from "react";
 import axiosInstance from "../axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
@@ -23,7 +24,7 @@ export default function SignUp() {
         event.preventDefault();
         console.log(userForm);
 
-        axiosInstance.post('user/register/', userForm)
+        axios.post('/api/user/register/', userForm)
         .then(result => {
             console.log(result);
             navigate('/login');
