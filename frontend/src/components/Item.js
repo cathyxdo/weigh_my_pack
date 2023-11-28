@@ -33,6 +33,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                                     i.name = itemData.name;
                                     i.description = itemData.description;
                                     i.weight = itemData.weight;
+                                    i.weight_uom = itemData.weight_uom;
                                     i.qty = itemData.qty;
                                     i.link = itemData.link;
                                     return i;
@@ -132,6 +133,12 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                 </td>
                 <td>
                     <input className="item-weight" type='number'  name ="weight" value={itemData.weight} onChange={handleChange}></input>
+                    <select name="weight_uom" value={itemData.weight_uom} onChange={handleChange}>
+                        <option value="oz">oz</option>
+                        <option value="lb">lb</option>
+                        <option value="g">g</option>
+                        <option value="kg">kg</option>
+                    </select>
                 </td>
                 <td>
                     <input className="item-qty" type='number'  name="qty" value={itemData.qty} onChange={handleChange}></input>

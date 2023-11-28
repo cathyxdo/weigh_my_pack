@@ -19,7 +19,8 @@ export default function ChartSection({apiList, selectedIndex}) {
             if (to_uom == 'g') {
                 return Math.round(weight_g)/1000;
             } if (to_uom == 'kg') {
-                return Math.round((weight_g * 1000 / 100000)) / 1000;
+                //return Math.round((weight_g * 1000 / 100000)) / 1000;
+                return (weight_g / 100000).toFixed(2);
             } if (to_uom == 'oz') {
                 return Math.round((weight_g * 1000 / 28349.5)) / 1000;
             } if (to_uom == 'lb') {
