@@ -70,9 +70,6 @@ table {
     width: 100%;
 }
 
-.descriptioncolumn {
-    width:20%;
-}
 th {
     text-align: left;
     font-size: 14px;
@@ -144,10 +141,6 @@ ul {
 }
 div {
     border-style: none;
-}
-.content {
- 
-    
 }
 .sidebar {
     position: fixed;
@@ -532,7 +525,8 @@ thead th {
 .edit-item {
     height: 80px;
 }
-
+.edit-item input {
+}
 .home {
     text-decoration: none;
 }
