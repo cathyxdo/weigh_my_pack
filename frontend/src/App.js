@@ -17,52 +17,37 @@ function App() {
   const [deleteCategoryModal, setDeleteCategoryModal] = useState({show: false, categoryId: ''});
   const [showSideBar, setShowSideBar] = useState(true);
   const [hoverHamburgerMenu, setHoverHamburgerMenu] = useState(false);
+  const [localList, setLocalList] = useState(() => {
+    const savedState = localStorage.getItem("localList");
+    const localList = JSON.parse(savedState);
+    return localList || [];
+  });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleClick(index) {
     setId(index);
     setCurrentListName(apiList[index].name);
   }
 
-
-
   useEffect(() => {
     axiosInstance.get('lists/')
     .then(result => {
       setApiList(result.data);
       setCurrentListName(result.data[0].name);
+      setIsLoggedIn(true);
+      localStorage.setItem("localList", JSON.stringify(localList));
     }).catch(err => {
       console.log(err);
     });
-  }, []);
+  }, [localList]);
   
-/*   function handleChange(event) {
-    setListName(event.target.value);
-  }
-
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const data = {name: listName};
-    axios.post('/api/lists/', data)
-    .then(result => {
-      console.log(result.data);
-      setApiList([
-        ...apiList, result.data
-      ]);
-    }).catch(err => {
-      console.log(err);
-    });
-    setListName('');
-  } */
-
   return (
     
     <div className="content">
         <div className={"sidebar " + (showSideBar ? 'showBar' : 'hideBar' ) }>
           <span className="sideBarHeader">
             <a href="/" className="home">
-              <h2>Packer List 🎒</h2>
+              <h2>Weigh My Pack 🎒</h2>
             </a>
             <button onClick={() => setShowSideBar(false)} className="collapseIcon">        
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="rotate(180 12 12)"><path fill="currentColor" d="M13.925 19q-.625 0-.888-.537t.088-1.038L17 12l-3.875-5.425q-.35-.5-.088-1.038T13.925 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.288t-.15.287l-4.225 5.95q-.15.2-.375.338t-.5.137Zm-5.95 0q-.625 0-.887-.537t.087-1.038L11.05 12L7.175 6.575q-.35-.5-.087-1.038T7.975 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.3t-.15.275l-4.225 5.95q-.15.2-.375.338t-.5.137Z"></path></g></svg>
@@ -70,10 +55,6 @@ function App() {
           </span>
 
           <Menu apiList={apiList} setApiList={setApiList} onSelectList={handleClick} selectedIndex={id}/>
-{/*           <form onSubmit={handleSubmit}>
-            <input type="text" name="listName" value={listName} onChange={handleChange}/>
-            <button type="submit" disabled={listName ? false : true}>Add List</button>
-          </form> */}
 
           <button className="add-item"  onMouseOver={() => setShowAddListIcon(true)} onMouseLeave={() => setShowAddListIcon(false)} onClick={()=> setShowAddListModal(true)}>
               {showAddListIcon === false &&
@@ -109,7 +90,7 @@ function App() {
         </div>
 
         {apiList && (
-          <ListDetails showSideBar={showSideBar} apiList={apiList} selectedIndex={id} listName={currentListName} handleNameChange={setCurrentListName} setApiList={setApiList} setDeleteCategoryModal={setDeleteCategoryModal}/>
+          <ListDetails showSideBar={showSideBar} apiList={apiList} selectedIndex={id} listName={currentListName} handleNameChange={setCurrentListName} setApiList={setApiList} setDeleteCategoryModal={setDeleteCategoryModal} isLoggedIn={isLoggedIn}/>
         )}  
         {(showAddListModal || deleteCategoryModal.show) &&
           <div className="modal-background">
