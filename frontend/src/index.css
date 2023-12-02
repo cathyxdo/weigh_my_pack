@@ -534,6 +534,13 @@ thead th {
 .deleteList:hover {
     color: var(--color-red);
 }
+
+.userHeader {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    align-items: center;
+}
 @media only screen and (max-width: 600px) {
 
     .sidebar {
