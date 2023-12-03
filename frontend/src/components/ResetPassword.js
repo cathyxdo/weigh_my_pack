@@ -39,7 +39,7 @@ export default function ResetPassword() {
             <p>{uidb64}</p>
             <p>{token}</p>
             
-            {apiResponse == '' && (
+            {apiResponse === '' && (
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="" className="label">Password</label>
                     <input type="password" className="input" name='new_password' value={passwordForm.new_password} onChange={handleChange}/> 
@@ -49,10 +49,10 @@ export default function ResetPassword() {
                     <input type="submit" className="primary-button" value="Reset Password" />
                 </form>
             )}
-            {apiResponse == 'success' && (
+            {apiResponse === 'success' && (
                 <p>Password was successfully updated, go log in</p>
             )}
-            {apiResponse == 'error' && (
+            {apiResponse === 'error' && (
                 <p>Reset Link Invalid, go home</p>
             )}
         </div>

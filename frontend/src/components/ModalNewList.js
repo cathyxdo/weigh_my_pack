@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import axiosInstance from "../axios";
 
 export default function ModalNewList({showModal, setApiList, apiList}) {

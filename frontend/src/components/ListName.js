@@ -1,4 +1,3 @@
-import DeleteIcon from "./DeleteIcon";
 import axios from "axios";
 import { useState } from "react";
 

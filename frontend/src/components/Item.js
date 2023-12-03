@@ -161,26 +161,3 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         
     )
 }
-
-            /* <li> 
-                {item.name}, {item.description}, {item.weight}g, {item.qty}     
-                <button onClick={() => setEditing(true)}>Edit</button>
-                <button onClick={handleDelete}>Delete</button>
-            </li> */
-
-            /*             <li>
-                <form onSubmit={handleSubmit}>
-                    <input type='text' name="name" value={itemData.name} onChange={handleChange}></input>
-                    <input type='text'  name="description" value={itemData.description} onChange={handleChange}></input>
-                    <input type='number'  name ="weight" value={itemData.weight} onChange={handleChange}></input>
-                    <input type='number'  name="qty" value={itemData.qty} onChange={handleChange}></input>
-                    <input type='link'  name="link" value={itemData.link} onChange={handleChange}></input>
-                    <button className="primary-button" type='submit' disabled={isValidItem(itemData) ? false : true} >Update</button>
-                    <button  className="secondary-button" onClick={
-                        function() {
-                            setEditing(false);
-                            setItemData(defaultItemData);
-                        }
-                    }>Cancel</button>
-                </form>
-            </li> */

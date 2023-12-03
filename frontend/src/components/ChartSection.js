@@ -4,26 +4,26 @@ import { useState } from "react";
 export default function ChartSection({apiList, selectedIndex}) {
     function weightConversion(weight, from_uom, to_uom) {
         function convertToG(weight, from_uom) {
-            if (from_uom == 'g') {
+            if (from_uom === 'g') {
                 return weight*1000;
-            } if (from_uom == 'kg') {
+            } if (from_uom === 'kg') {
                 return weight * 1000000;
-            } if (from_uom == 'oz') {
+            } if (from_uom === 'oz') {
                 return weight * 28349.5;
-            } if (from_uom == 'lb') {
+            } if (from_uom === 'lb') {
                 return weight * 453592;
             }
         }
 
         function convertGToUom(weight_g, to_uom) {
-            if (to_uom == 'g') {
+            if (to_uom === 'g') {
                 return Math.round(weight_g)/1000;
-            } if (to_uom == 'kg') {
+            } if (to_uom === 'kg') {
                 //return Math.round((weight_g * 1000 / 100000)) / 1000;
                 return (weight_g / 100000).toFixed(2);
-            } if (to_uom == 'oz') {
+            } if (to_uom === 'oz') {
                 return Math.round((weight_g * 1000 / 28349.5)) / 1000;
-            } if (to_uom == 'lb') {
+            } if (to_uom === 'lb') {
                 return Math.round((weight_g * 1000 / 453592)) / 1000;
             }
         }

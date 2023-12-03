@@ -90,22 +90,6 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
 
     }
 
-    function handleDeleteCategory(event) {
-        event.preventDefault();
-        axios.delete('/api/categories/' + category.id + '/')
-        .then(result => {
-            setApiList(apiList.map((list, index) => {
-                if(index === selectedIndex) {
-                    list.categories = list.categories.filter((c) => c.id !== category.id);
-                    return list;
-                } else {
-                    return list;
-                }
-            }))
-        }).catch(err => {
-            console.log(err);
-        })
-    }
     return (
         <div className="categorySection">
             {editing === false &&

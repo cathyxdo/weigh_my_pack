@@ -1,11 +1,8 @@
-import {lists} from './data.js';
 import {useState, useEffect} from 'react';
-import EditIcon from "./components/EditIcon";
 import Menu from "./components/Menu";
 import ListDetails from './components/ListDetails.js';
 import ModalNewList from './components/ModalNewList.js';
 import ModalDeleteCategory from './components/ModalDeleteCategory.js';
-import axios from 'axios';
 import axiosInstance from './axios.js';
 function App() {
   const [id, setId] = useState(0);    // show first list by default

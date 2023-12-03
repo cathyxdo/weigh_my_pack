@@ -1,6 +1,5 @@
 import Category from "./Category";
 import { useState } from 'react';
-import EditIcon from './EditIcon';
 import ChartSection from "./ChartSection";
 import axios from "axios";
 import Header from "./Header";
@@ -11,11 +10,6 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
 
   const [isEditing, setIsEditing] = useState(false);
   const [newCategory, setNewCategory] = useState('');
-
-
-  function wasClicked() {
-    setIsEditing(true);
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -134,12 +128,3 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
     </div>
   )
 }
-
-{/* <form onSubmit={handleSubmit}>
-<input type='text' placeholder="category name" value={newCategory} onChange={(e) => setNewCategory(e.target.value)}></input>
-<button type='submit'>Add</button>
-<button onClick={function () { 
-setShowCategoryForm(false);
-setNewCategory('');
-}}>Cancel</button>
-</form> */}
