@@ -52,6 +52,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                 }
             }))
             setEditing(false);
+            console.log(result);
         }).catch(err => {
             console.log(err);
         });
