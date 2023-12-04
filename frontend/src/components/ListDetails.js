@@ -14,7 +14,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
   function handleSubmit(event) {
     event.preventDefault();
     const data = {name: newCategory, list: list.id};
-    axios.post('/api/categories/', data)
+    axios.post('https://weigh-my-pack.onrender.com/api/categories/', data)
     .then(result => {
       setApiList(apiList.map((list, index) =>{
         if(index === selectedIndex) {
@@ -37,7 +37,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
 
  function handleNameChangeSubmit(event) {
     event.preventDefault();
-    axios.patch('/api/lists/' + list.id + '/', {name: listName})
+    axios.patch('https://weigh-my-pack.onrender.com/api/lists/' + list.id + '/', {name: listName})
     .then(result => {
       setApiList(apiList.map((list, index) => {
         if (index === selectedIndex) {
