@@ -29,7 +29,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
 
     function handleSubmitItem(event) {
         event.preventDefault();
-        axios.post('https://weigh-my-pack.onrender.com/api/', itemData)
+        axios.post('https://weigh-my-pack.onrender.com/api/items/', itemData)
         .then(result => {
             setApiList(apiList.map((list,index) => {
                 if (index === selectedIndex) {
