@@ -30,7 +30,7 @@ export default function Login() {
 			});
         */
        // new code
-       axios.post(`/api/token/`, loginForm)
+       axios.post('/api/token/', loginForm)
        .then((result) => {
                localStorage.setItem('access_token', result.data.access);
                localStorage.setItem('refresh_token', result.data.refresh);
