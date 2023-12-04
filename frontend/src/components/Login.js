@@ -1,6 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import axiosInstance from "../axios";
+import axios from "axios";
 
 export default function Login() {
     const [loginForm, setLoginForm] = useState({
@@ -17,6 +18,7 @@ export default function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        /* old code below
         axiosInstance.post(`token/`, loginForm)
 		.then((result) => {
 				localStorage.setItem('access_token', result.data.access);
@@ -26,6 +28,19 @@ export default function Login() {
                 console.log(result);
                 navigate('/');
 			});
+        */
+       // new code
+       axios.post(`/api/token/`, loginForm)
+       .then((result) => {
+               localStorage.setItem('access_token', result.data.access);
+               localStorage.setItem('refresh_token', result.data.refresh);
+
+               //initialize header with JWT token, so that when redirect happens to home it will have the auth header inside
+               axiosInstance.defaults.headers['Authorization'] =
+					'JWT ' + localStorage.getItem('access_token');
+               console.log(result);
+               navigate('/');
+           });
     }
     return (
 
