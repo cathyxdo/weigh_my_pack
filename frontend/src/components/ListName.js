@@ -6,7 +6,7 @@ export default function ListName({name, id, index, onSelect, apiList, setApiList
     const isActive = (index === selectedIndex) ? 'active' : 'inactive';
     function handleDelete(event) {
         event.preventDefault();
-        const url = '/api/lists/' + id + '/';
+        const url = 'https://weigh-my-pack.onrender.com/api/lists/' + id + '/';
         axios.delete(url)
         .then(result => {
             setApiList(apiList.filter((list) => list.id !== id ));

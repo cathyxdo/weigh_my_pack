@@ -3,7 +3,7 @@ export default function ModalDeleteCategory({categoryId, selectedIndex, setDelet
 
     function handleDeleteCategory(event) {
         event.preventDefault();
-        axios.delete('/api/categories/' + categoryId + '/')
+        axios.delete('https://weigh-my-pack.onrender.com/api/categories/' + categoryId + '/')
         .then(result => {
             setApiList(apiList.map((list, index) => {
                 if(index === selectedIndex) {

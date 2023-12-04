@@ -16,7 +16,7 @@ export default function ForgotPassword() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.post('/api/user/forgot-password/', emailForm)
+        axios.post('https://weigh-my-pack.onrender.com/api/user/forgot-password/', emailForm)
         .then(result => {
             console.log(result);
             setEmailSent(true);
