@@ -22,7 +22,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.patch('/api/items/' + item.id + '/', itemData)
+        axios.patch('https://weigh-my-pack.onrender.com/api/items/' + item.id + '/', itemData)
         .then(result => {
             setApiList(apiList.map((list, index) => {
                 if (index === selectedIndex) {
