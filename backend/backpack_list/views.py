@@ -13,7 +13,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.response import Response
 from django.http import Http404
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 class UserListView(generics.ListCreateAPIView):
 
@@ -32,6 +32,7 @@ class ListList(generics.ListCreateAPIView):
 class SingleList(generics.RetrieveUpdateDestroyAPIView):
     queryset = List.objects.all()
     serializer_class = ListSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 class ModifyCategory(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
