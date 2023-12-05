@@ -46,7 +46,7 @@ export default function Login() {
 
         <div className="LoginForm">
             <form action="" className="form">
-                <h1 class="title">Login</h1>
+                <h1 className="title">Login</h1>
     
                 <div className="inputContainer">
                     <label htmlFor="email" className="label">Email</label>

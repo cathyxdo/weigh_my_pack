@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ChartSection from "./ChartSection";
 import axios from "axios";
 import Header from "./Header";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ListDetails({apiList, listName, selectedIndex, handleNameChange, setApiList, setDeleteCategoryModal, showSideBar, isLoggedIn}) {
   const list = apiList[selectedIndex];
@@ -14,8 +15,65 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
   function handleSubmit(event) {
     event.preventDefault();
     const data = {name: newCategory, list: list.id};
-    axios.post('https://weigh-my-pack.onrender.com/api/categories/', data)
-    .then(result => {
+  
+    if (isLoggedIn) {
+      axios.post('https://weigh-my-pack.onrender.com/api/categories/', data)
+      .then(result => {
+        setApiList(updateList(result.data));
+/*         setApiList(apiList.map((list, index) =>{
+          if(index === selectedIndex) {
+            list.categories = [
+              ...list.categories,
+              result.data
+            ]
+            return list;
+          } else {
+            return list;
+          }
+        })) */
+        
+        setNewCategory('');
+        setShowCategoryForm(false);
+      }).catch(err => {
+        console.log(err);
+      });
+    } else {
+      const uniqueId = uuidv4();
+      const newCategoryLocal = {id: uniqueId, name: newCategory, list: list.id, items:[]};
+      const newList = updateList(newCategoryLocal);
+      localStorage.setItem("localList", JSON.stringify(newList));
+      setApiList(newList);
+/*       setApiList(apiList.map((list, index) =>{
+        if(index === selectedIndex) {
+          list.categories = [
+            ...list.categories,
+            newCategoryLocal
+          ]
+          return list;
+        } else {
+          return list;
+        }
+      })) */
+
+      setNewCategory('');
+      setShowCategoryForm(false);
+    }
+
+    function updateList(categoryToAdd) {
+      return apiList.map((list, index) =>{
+        if(index === selectedIndex) {
+          list.categories = [
+            ...list.categories,
+            categoryToAdd
+          ]
+          return list;
+        } else {
+          return list;
+        }
+      })
+    }
+    /*
+    function updateStateNewCategory() {
       setApiList(apiList.map((list, index) =>{
         if(index === selectedIndex) {
           list.categories = [
@@ -26,19 +84,38 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
         } else {
           return list;
         }
-
       }))
-    }).catch(err => {
-      console.log(err);
-    });
-    setNewCategory('');
-    setShowCategoryForm(false);
+    }
+*/
   }
+  
 
  function handleNameChangeSubmit(event) {
     event.preventDefault();
-    axios.patch('https://weigh-my-pack.onrender.com/api/lists/' + list.id + '/', {name: listName})
-    .then(result => {
+
+    if (isLoggedIn) {
+      axios.patch('https://weigh-my-pack.onrender.com/api/lists/' + list.id + '/', {name: listName})
+      .then(result => {
+        
+        /*setApiList(apiList.map((list, index) => {
+          if (index === selectedIndex) {
+            list.name = listName;
+            return list;
+          } else {
+            return list;
+          }
+        }))*/
+        updateStateNameChange();
+        setIsEditing(false);
+      }).catch(err => {
+        console.log(err);
+      });
+    } else {
+      updateStateNameChange();
+      localStorage.setItem("localList", JSON.stringify(apiList));
+      setIsEditing(false);
+    }
+    function updateStateNameChange() {
       setApiList(apiList.map((list, index) => {
         if (index === selectedIndex) {
           list.name = listName;
@@ -47,14 +124,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
           return list;
         }
       }))
-      setIsEditing(false);
-    }).catch(err => {
-      console.log(err);
-    });
-
-    
-  
-
+    }
  }
 
 
@@ -93,7 +163,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
           <ChartSection  selectedIndex={selectedIndex} apiList={apiList}/>
 
           {list.categories.map((category) => 
-          <Category key={category.id} category={category} apiList={apiList} setApiList={setApiList} selectedIndex={selectedIndex} setDeleteCategoryModal={setDeleteCategoryModal}/>)}
+          <Category key={category.id} category={category} apiList={apiList} setApiList={setApiList} selectedIndex={selectedIndex} setDeleteCategoryModal={setDeleteCategoryModal} isLoggedIn={isLoggedIn}/>)}
           {showCategoryForm && 
 
 

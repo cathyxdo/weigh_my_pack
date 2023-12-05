@@ -14,11 +14,99 @@ function App() {
   const [deleteCategoryModal, setDeleteCategoryModal] = useState({show: false, categoryId: ''});
   const [showSideBar, setShowSideBar] = useState(true);
   const [hoverHamburgerMenu, setHoverHamburgerMenu] = useState(false);
+  /*
   const [localList, setLocalList] = useState(() => {
     const savedState = localStorage.getItem("localList");
     const localList = JSON.parse(savedState);
     return localList || [];
   });
+*/
+  let localList = localStorage.getItem("localList") ? JSON.parse(localStorage.getItem("localList")) : [];
+  /*
+  localList = [
+        {
+            "id": 1,
+            "name": "New List Test - 1",
+            "notes": null,
+            "categories": [
+                {
+                    "id": 1,
+                    "name": "Tent",
+                    "items": [
+                        {
+                            "id": 1,
+                            "name": "Tent Poles",
+                            "description": "",
+                            "weight": 10.0,
+                            "weight_uom": "oz",
+                            "qty": 1,
+                            "link": null,
+                            "category": 1
+                        },
+                        {
+                            "id": 2,
+                            "name": "test",
+                            "description": "",
+                            "weight": 3.0,
+                            "weight_uom": "oz",
+                            "qty": 1,
+                            "link": "",
+                            "category": 1
+                        },
+                        {
+                            "id": 3,
+                            "name": "test",
+                            "description": "",
+                            "weight": 1.0,
+                            "weight_uom": "oz",
+                            "qty": 1,
+                            "link": "",
+                            "category": 1
+                        }
+                    ],
+                    "list": 1
+                },
+                {
+                    "id": 3,
+                    "name": "new category",
+                    "items": [
+                        {
+                            "id": 4,
+                            "name": "test-1",
+                            "description": "",
+                            "weight": 1.0,
+                            "weight_uom": "oz",
+                            "qty": 1,
+                            "link": "",
+                            "category": 3
+                        },
+                        {
+                            "id": 5,
+                            "name": "test2",
+                            "description": "",
+                            "weight": 5.0,
+                            "weight_uom": "oz",
+                            "qty": 1,
+                            "link": "",
+                            "category": 3
+                        },
+                        {
+                            "id": 6,
+                            "name": "test 5",
+                            "description": "",
+                            "weight": 1.0,
+                            "weight_uom": "oz",
+                            "qty": 3,
+                            "link": "",
+                            "category": 3
+                        }
+                    ],
+                    "list": 1
+                }
+            ]
+        }
+    ]
+    */
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleClick(index) {
@@ -32,11 +120,15 @@ function App() {
       setApiList(result.data);
       setCurrentListName(result.data[0].name);
       setIsLoggedIn(true);
-      localStorage.setItem("localList", JSON.stringify(localList));
     }).catch(err => {
       console.log(err);
+      console.log("store local list");
+      console.log(localList);
+      localStorage.setItem("localList", JSON.stringify(localList));
+      setApiList(localList);
+      setCurrentListName(localList[0].name);
     });
-  }, [localList]);
+  }, []);
   
   return (
     
@@ -51,7 +143,7 @@ function App() {
             </button>
           </span>
 
-          <Menu apiList={apiList} setApiList={setApiList} onSelectList={handleClick} selectedIndex={id}/>
+          <Menu apiList={apiList} setApiList={setApiList} onSelectList={handleClick} selectedIndex={id} isLoggedIn={isLoggedIn}/>
 
           <button className="add-item"  onMouseOver={() => setShowAddListIcon(true)} onMouseLeave={() => setShowAddListIcon(false)} onClick={()=> setShowAddListModal(true)}>
               {showAddListIcon === false &&
@@ -92,11 +184,11 @@ function App() {
         {(showAddListModal || deleteCategoryModal.show) &&
           <div className="modal-background">
             {showAddListModal && 
-              <ModalNewList showModal={setShowAddListModal} apiList={apiList} setApiList={setApiList}/> 
+              <ModalNewList showModal={setShowAddListModal} apiList={apiList} setApiList={setApiList} isLoggedIn={isLoggedIn}/> 
             }
 
             {deleteCategoryModal.show && 
-              <ModalDeleteCategory selectedIndex={id} categoryId={deleteCategoryModal.categoryId} setDeleteCategoryModal={setDeleteCategoryModal} apiList={apiList} setApiList={setApiList}/>
+              <ModalDeleteCategory selectedIndex={id} categoryId={deleteCategoryModal.categoryId} setDeleteCategoryModal={setDeleteCategoryModal} apiList={apiList} setApiList={setApiList} isLoggedIn={isLoggedIn}/>
             }
           </div>
         }

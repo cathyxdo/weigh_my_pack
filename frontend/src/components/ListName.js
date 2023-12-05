@@ -1,19 +1,31 @@
 import axios from "axios";
 import { useState } from "react";
 
-export default function ListName({name, id, index, onSelect, apiList, setApiList, selectedIndex}) {
+export default function ListName({name, id, index, onSelect, apiList, setApiList, selectedIndex, isLoggedIn}) {
     const [showIcon, setShowIcon] = useState(false);
     const isActive = (index === selectedIndex) ? 'active' : 'inactive';
     function handleDelete(event) {
         event.preventDefault();
-        const url = 'https://weigh-my-pack.onrender.com/api/lists/' + id + '/';
-        axios.delete(url)
-        .then(result => {
-            setApiList(apiList.filter((list) => list.id !== id ));
+
+        if (isLoggedIn) {
+            const url = 'https://weigh-my-pack.onrender.com/api/lists/' + id + '/';
+            axios.delete(url)
+            .then(result => {
+                //setApiList(apiList.filter((list) => list.id !== id ));
+                updateStateDeleteCategory();
+                onSelect(index-1);
+            }).catch(err => {
+                console.log(err);
+            });
+        } else {
+            updateStateDeleteCategory();
             onSelect(index-1);
-        }).catch(err => {
-            console.log(err);
-        });
+            localStorage.setItem("localList", JSON.stringify(apiList));
+        }
+        function updateStateDeleteCategory() {
+            setApiList(apiList.filter((list) => list.id !== id ));
+        }
+
     }
 
 

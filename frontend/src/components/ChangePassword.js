@@ -16,7 +16,7 @@ export default function ChangePassword() {
     }
     function handleSubmit(event) {
         event.preventDefault()
-        axiosInstance.put(`user/changepassword/`, passwords)
+        axiosInstance.put('user/changepassword/', passwords)
 		.then((result) => {
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');

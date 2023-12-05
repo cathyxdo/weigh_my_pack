@@ -1,10 +1,39 @@
 import axios from "axios";
-export default function ModalDeleteCategory({categoryId, selectedIndex, setDeleteCategoryModal, apiList, setApiList}) {
+export default function ModalDeleteCategory({categoryId, selectedIndex, setDeleteCategoryModal, apiList, setApiList, isLoggedIn}) {
 
     function handleDeleteCategory(event) {
         event.preventDefault();
-        axios.delete('https://weigh-my-pack.onrender.com/api/categories/' + categoryId + '/')
-        .then(result => {
+        
+        if (isLoggedIn) {
+            axios.delete('https://weigh-my-pack.onrender.com/api/categories/' + categoryId + '/')
+            .then(result => {
+                /*
+                setApiList(apiList.map((list, index) => {
+                    if(index === selectedIndex) {
+                        list.categories = list.categories.filter((c) => c.id !== categoryId);
+                        return list;
+                    } else {
+                        return list;
+                    }
+                }))
+                */
+                updateStateDeleteCategory();
+                setDeleteCategoryModal({
+                    'show': false,
+                    'categoryId': ''
+                });
+            }).catch(err => {
+                console.log(err);
+            });
+        } else {
+            updateStateDeleteCategory();
+            setDeleteCategoryModal({
+                'show': false,
+                'categoryId': ''
+            });
+            localStorage.setItem("localList", JSON.stringify(apiList));
+        }
+        function updateStateDeleteCategory() {
             setApiList(apiList.map((list, index) => {
                 if(index === selectedIndex) {
                     list.categories = list.categories.filter((c) => c.id !== categoryId);
@@ -13,13 +42,7 @@ export default function ModalDeleteCategory({categoryId, selectedIndex, setDelet
                     return list;
                 }
             }))
-            setDeleteCategoryModal({
-                'show': false,
-                'categoryId': ''
-            })
-        }).catch(err => {
-            console.log(err);
-        })
+        }
     }
     return (
         <div class="modal-delete">

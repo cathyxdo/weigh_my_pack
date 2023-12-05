@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axiosInstance from "../axios";
+import { v4 as uuidv4 } from "uuid";
 
-export default function ModalNewList({showModal, setApiList, apiList}) {
+export default function ModalNewList({showModal, setApiList, apiList, isLoggedIn}) {
     const emptyListData = {name: '', notes:''}
     const [listData, setListData] = useState(emptyListData);
 
@@ -16,18 +17,26 @@ export default function ModalNewList({showModal, setApiList, apiList}) {
     function handleSubmit(event) {
         event.preventDefault();
 
-        axiosInstance.post('lists/', listData)
-        .then(result => {
-          console.log(result.data);
-          setApiList([
-            ...apiList, result.data
-          ]);
-          showModal(false);
-        }).catch(err => {
-          console.log(err);
-        });
-        setListData(emptyListData);
-        
+        if (isLoggedIn) {
+            axiosInstance.post('lists/', listData)
+            .then(result => {
+                setApiList([
+                    ...apiList, result.data
+                ]);
+                showModal(false);
+                setListData(emptyListData);
+            }).catch(err => {
+                console.log(err);
+            });
+        } else {
+            const uniqueId = uuidv4();
+            const newList = {id: uniqueId, name: listData.name, notes: listData.notes, categories: []};
+            localStorage.setItem("localList", JSON.stringify([...apiList, newList]));
+            setApiList([...apiList, newList]);            
+            showModal(false);
+            setListData(emptyListData);
+
+        }
     }
     return (
         <div className="modal-new-list">

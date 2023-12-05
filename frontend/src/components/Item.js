@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from 'react';
 
-export default function Item({item, apiList, setApiList, selectedIndex, categoryId, isValidItem}) {
+export default function Item({item, apiList, setApiList, selectedIndex, categoryId, isValidItem, isLoggedIn}) {
     const [editing, setEditing] = useState(false);
     const defaultItemData = {
         name: item.name,
@@ -22,8 +22,50 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
 
     function handleSubmit(event) {
         event.preventDefault();
-        axios.patch('https://weigh-my-pack.onrender.com/api/items/' + item.id + '/', itemData)
-        .then(result => {
+
+        if (isLoggedIn) {
+            axios.patch('https://weigh-my-pack.onrender.com/api/items/' + item.id + '/', itemData)
+            .then(result => {
+    /*             setApiList(apiList.map((list, index) => {
+                    if (index === selectedIndex) {
+                        list.categories.map((c) => {
+                            if (c.id === categoryId) {
+                                c.items.map((i) => {
+                                    if (i.id === item.id) {
+                                        i.name = itemData.name;
+                                        i.description = itemData.description;
+                                        i.weight = itemData.weight;
+                                        i.weight_uom = itemData.weight_uom;
+                                        i.qty = itemData.qty;
+                                        i.link = itemData.link;
+                                        return i;
+                                    } else {
+                                        return i;
+                                    }
+                                })
+                                return c;
+                            } else {
+                                return c;
+                            }
+                        })
+                        return list;
+                    } else {
+                        return list;
+                    }
+                })) */
+                updateStateEditItem();
+                setEditing(false);
+                console.log(result);
+            }).catch(err => {
+                console.log(err);
+            });
+        } else {
+            updateStateEditItem();
+            localStorage.setItem("localList", JSON.stringify(apiList));
+            setEditing(false);
+        }
+
+        function updateStateEditItem() {
             setApiList(apiList.map((list, index) => {
                 if (index === selectedIndex) {
                     list.categories.map((c) => {
@@ -51,17 +93,40 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                     return list;
                 }
             }))
-            setEditing(false);
-            console.log(result);
-        }).catch(err => {
-            console.log(err);
-        });
+        }
     }
 
     function handleDelete(event) {
         event.preventDefault();
-        axios.delete('/api/items/' + item.id + '/')
-        .then(result => {
+
+        if (isLoggedIn) {
+            axios.delete('/api/items/' + item.id + '/')
+            .then(result => {
+                /* setApiList(apiList.map((list, index) => {
+                    if (index === selectedIndex) {
+                        list.categories.map((c) => {
+                            if (c.id === categoryId) {
+                                c.items = c.items.filter((i) => i.id !== item.id)
+                                return c;
+                            } else {
+                                return c;
+                            }
+                        }) 
+                        return list;
+                    } else {
+                        return list;
+                    }
+                })) */
+                updateStateDeleteItem();
+            }).catch(err => {
+                console.log(err);
+            });
+        } else {
+            updateStateDeleteItem();
+            localStorage.setItem("localList", JSON.stringify(apiList));
+        }
+
+        function updateStateDeleteItem() {
             setApiList(apiList.map((list, index) => {
                 if (index === selectedIndex) {
                     list.categories.map((c) => {
@@ -77,9 +142,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                     return list;
                 }
             }))
-        }).catch(err => {
-            console.log(err);
-        });
+        }
 
     }
 

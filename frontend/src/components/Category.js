@@ -1,8 +1,9 @@
 import Item from "./Item";
 import { useState } from 'react';
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
-export default function Category({category, apiList, setApiList, selectedIndex, setDeleteCategoryModal}) {
+export default function Category({category, apiList, setApiList, selectedIndex, setDeleteCategoryModal, isLoggedIn}) {
 
     const emptyItem = {
         name: '',
@@ -29,8 +30,41 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
 
     function handleSubmitItem(event) {
         event.preventDefault();
-        axios.post('https://weigh-my-pack.onrender.com/api/items/', itemData)
-        .then(result => {
+
+        if (isLoggedIn) {
+            axios.post('https://weigh-my-pack.onrender.com/api/items/', itemData)
+            .then(result => {
+                setApiList(updateList(result.data));
+/*                 setApiList(apiList.map((list,index) => {
+                    if (index === selectedIndex) {
+                        list.categories.map((c) => {
+                            if (c.id === category.id) {
+
+                                c.items = [
+                                    ...c.items,
+                                    result.data
+                                ]
+                                return c;
+                            } else {
+                                return c;
+                            }
+                        })
+                        return list
+                    } else {
+                        return list;
+                    }
+                })) */
+            }).catch(err => {
+                console.log({err});
+            });
+        } else {
+            const uniqueId = uuidv4();
+            const newItem = {id: uniqueId, ...itemData};
+            const newList = updateList(newItem);
+            localStorage.setItem("localList", JSON.stringify(newList));
+            setApiList(newList);
+
+            /*
             setApiList(apiList.map((list,index) => {
                 if (index === selectedIndex) {
                     list.categories.map((c) => {
@@ -38,7 +72,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
 
                             c.items = [
                                 ...c.items,
-                                result.data
+                                newItem
                             ]
                             return c;
                         } else {
@@ -50,11 +84,32 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
                     return list;
                 }
             }))
-        }).catch(err => {
-            console.log({err});
-        });
-
+            */
+        }
         setItemData(emptyItem);
+
+        function updateList(itemToAdd) {
+            const newList = apiList.map((list,index) => {
+                if (index === selectedIndex) {
+                    list.categories.map((c) => {
+                        if (c.id === category.id) {
+
+                            c.items = [
+                                ...c.items,
+                                itemToAdd
+                            ]
+                            return c;
+                        } else {
+                            return c;
+                        }
+                    })
+                    return list
+                } else {
+                    return list;
+                }
+            })
+            return newList
+        }
     }
 
     function isValidItem(itemData) {
@@ -66,8 +121,36 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
 
     function handleSubmitCategory(event) {
         event.preventDefault();
-        axios.patch('/api/categories/' + category.id + '/', {name: categoryName})
-        .then(result => {
+        if (isLoggedIn) {
+            axios.patch('/api/categories/' + category.id + '/', {name: categoryName})
+            .then(result => {
+    /*             setApiList(apiList.map((list, index) => {
+                    if (index === selectedIndex) {
+                        list.categories.map((c) => {
+                            if (c.id === category.id) {
+                                c.name = categoryName;
+                                return c;
+                            } else {
+                                return c;
+                            }
+                        })
+                        return list;
+                    } else {
+                        return list;
+                    }
+                })) */
+                updateStateEditCategory();
+                setEditing(false);
+            }).catch(err => {
+                console.log(err);
+            });
+        } else {
+            updateStateEditCategory();
+            setEditing(false);
+            localStorage.setItem("localList", JSON.stringify(apiList));
+        }
+
+        function updateStateEditCategory() {
             setApiList(apiList.map((list, index) => {
                 if (index === selectedIndex) {
                     list.categories.map((c) => {
@@ -83,11 +166,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
                     return list;
                 }
             }))
-            setEditing(false);
-        }).catch(err => {
-            console.log(err);
-        })
-
+        }
     }
 
     return (
@@ -129,7 +208,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
                         <th></th>
                     </tr>
                     {category.items.map((item) => (
-                    <Item key={item.id} item={item} apiList={apiList} setApiList={setApiList} selectedIndex={selectedIndex} categoryId={category.id} isValidItem={isValidItem}/>
+                    <Item key={item.id} item={item} apiList={apiList} setApiList={setApiList} selectedIndex={selectedIndex} categoryId={category.id} isValidItem={isValidItem} isLoggedIn={isLoggedIn}/>
                     ))}
                 </table>
             
