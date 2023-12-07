@@ -11,6 +11,7 @@ import PageNotFound from './components/PageNotFound';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from './components/SignUp';
+import SharePage from './components/SharePage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 /* root.render(
@@ -30,6 +31,7 @@ root.render(
           <Route path="/changepassword" element={<ChangePassword />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:uidb64/:token" element={<ResetPassword />} />
+          <Route path="/:listid" element={<SharePage />} />
           <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

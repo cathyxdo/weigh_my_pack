@@ -1,8 +1,9 @@
 import DoughnutChart from "./DoughnutChart";
 import { useState } from "react";
+import generateChartData from "./utils/generateChartData";
 
-export default function ChartSection({apiList, selectedIndex}) {
-    function weightConversion(weight, from_uom, to_uom) {
+export default function ChartSection({list}) {
+/*     function weightConversion(weight, from_uom, to_uom) {
         function convertToG(weight, from_uom) {
             if (from_uom === 'g') {
                 return weight*1000;
@@ -50,9 +51,13 @@ export default function ChartSection({apiList, selectedIndex}) {
         total = total+subtotalWeight;
         categorySubtotals.push({name: name, subtotalWeight: subtotalWeight});
         data.push(subtotalWeight);
-    }
+    } */
+
+    const [currentWeightUom, setCurrentWeighUom] = useState('lb');
+    const {data, chartLabels, total, categorySubtotals} = generateChartData(list, currentWeightUom);
+
     const chartData = {
-        labels: nameLabels,
+        labels: chartLabels,
         datasets: [
             {
               label: 'weight',

@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function ListDetails({apiList, listName, selectedIndex, handleNameChange, setApiList, setDeleteCategoryModal, showSideBar, isLoggedIn}) {
   const list = apiList[selectedIndex];
   const [showCategoryForm, setShowCategoryForm] = useState(false);
-
+  
   const [isEditing, setIsEditing] = useState(false);
   const [newCategory, setNewCategory] = useState('');
 
@@ -142,7 +142,9 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
 
       {list && (
         <div>
-
+          {isLoggedIn && 
+            <button className="secondary-button" onClick={(e) => navigator.clipboard.writeText("https://weigh-my-pack-react.onrender.com/"+ list.id)}>Share List</button>
+          }
           <header>
             {!isEditing && 
               <h2>
@@ -160,7 +162,8 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
               </h2>
             }      
           </header>
-          <ChartSection  selectedIndex={selectedIndex} apiList={apiList}/>
+          {/* <ChartSection  selectedIndex={selectedIndex} apiList={apiList}/> */}
+          <ChartSection list={apiList[selectedIndex]}/>
 
           {list.categories.map((category) => 
           <Category key={category.id} category={category} apiList={apiList} setApiList={setApiList} selectedIndex={selectedIndex} setDeleteCategoryModal={setDeleteCategoryModal} isLoggedIn={isLoggedIn}/>)}

@@ -80,7 +80,9 @@ td {
     font-size: 12px;
     height: 30px;
 }
-
+.shareView td {
+    height: 20px;
+}
 td:focus {
     outline: solid 2px rgb(75, 124, 177);
 }
@@ -540,6 +542,17 @@ thead th {
     flex-direction: row-reverse;
     gap: 10px;
     align-items: center;
+}
+
+.shareView {
+    padding: 20px 80px;
+}
+.tableCategoryName {
+    font-size: 1.2em;
+}
+
+td {
+    line-height: 10px;
 }
 @media only screen and (max-width: 600px) {
 
