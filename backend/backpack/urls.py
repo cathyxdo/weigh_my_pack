@@ -21,10 +21,10 @@ from backpack_list.views import  list_detail, item_form, add_item, category_form
 
 from backpack_list.views import ListListView, CategoryListView
 from backpack_list.views import ListList, ModifyCategory, ModifyItem, CreateCategory, CreateItem, SingleList, UserListView
-from rest_framework_simplejwt.views import (
+"""from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
-)
+)"""
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ListListView.as_view(), name="index"),
@@ -58,7 +58,7 @@ urlpatterns = [
     path("api/categories/", CreateCategory.as_view()),
     path("api/items/<int:pk>/", ModifyItem.as_view()),
     path("api/items/", CreateItem.as_view()),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    #path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    #path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/user/', include('users.urls', namespace='users')),
 ]
