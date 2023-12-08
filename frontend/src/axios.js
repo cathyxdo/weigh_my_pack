@@ -31,7 +31,7 @@ axiosInstance.interceptors.response.use(
 
 		if (
 			error.response.status === 401 &&
-			originalRequest.url === 'http://127.0.0.1:8000/api/token/refresh/'
+			originalRequest.url === baseURL + 'user/token/refresh/'
 		) {
 			window.location.href = '/login/';
 			return Promise.reject(error);
@@ -53,7 +53,7 @@ axiosInstance.interceptors.response.use(
 
 				if (tokenParts.exp > now) {
 					return axiosInstance
-						.post('/token/refresh/', { refresh: refreshToken })
+						.post('/user/token/refresh/', { refresh: refreshToken })
 						.then((response) => {
 							localStorage.setItem('access_token', response.data.access);
 							localStorage.setItem('refresh_token', response.data.refresh);
