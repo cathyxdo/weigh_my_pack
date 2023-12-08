@@ -9,7 +9,7 @@ import ResetPassword from './components/ResetPassword';
 import App from './App';
 import PageNotFound from './components/PageNotFound';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import SignUp from './components/SignUp';
 import SharePage from './components/SharePage';
 
@@ -23,7 +23,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
           <Route path="/" element={<App />} />
           <Route path="/login" element={<Login />} />
@@ -33,8 +33,9 @@ root.render(
           <Route path="/reset-password/:uidb64/:token" element={<ResetPassword />} />
           <Route path="/:listid" element={<SharePage />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="/404" element={<PageNotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );
 
