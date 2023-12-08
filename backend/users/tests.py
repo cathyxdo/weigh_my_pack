@@ -33,7 +33,7 @@ class JWTTokenAPITestCase(APITestCase):
         )
 
     def test_token_generation(self):
-        url = reverse('token_obtain_pair')
+        url = reverse('users:token_obtain_pair')
         data = {
             'email': 'test@test.com',
             'password': 'testpassword'
@@ -47,7 +47,7 @@ class JWTTokenAPITestCase(APITestCase):
     def test_token_refresh(self):
         # Generate a token
         token = RefreshToken.for_user(self.user)
-        refresh_url = reverse('token_refresh')
+        refresh_url = reverse('users:token_refresh')
         data = {'refresh': str(token)}
         response = self.client.post(refresh_url, data, format='json')
 
@@ -57,9 +57,8 @@ class JWTTokenAPITestCase(APITestCase):
 
     def test_invalid_token(self):
         # Attempt to refresh an invalid token
-        invalid_refresh_url = reverse('token_refresh')
+        invalid_refresh_url = reverse('users:token_refresh')
         data = {'refresh': 'invalid_token'}
         response = self.client.post(invalid_refresh_url, data, format='json')
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
-
