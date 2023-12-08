@@ -4,6 +4,7 @@ import ChartSection from "./ChartSection";
 import axios from "axios";
 import Header from "./Header";
 import { v4 as uuidv4 } from "uuid";
+import ShareLinkPopUp from "./ShareLinkPopUp";
 
 export default function ListDetails({apiList, listName, selectedIndex, handleNameChange, setApiList, setDeleteCategoryModal, showSideBar, isLoggedIn}) {
   const list = apiList[selectedIndex];
@@ -11,6 +12,16 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
   
   const [isEditing, setIsEditing] = useState(false);
   const [newCategory, setNewCategory] = useState('');
+  const [isPopUpVisible, setIsPopupVisible] = useState(false);
+
+  function handleCopyLink(event) {
+    event.preventDefault();
+    navigator.clipboard.writeText("https://weigh-my-pack-react.onrender.com/#/"+ list.id);
+    setIsPopupVisible(true);
+    setTimeout(() => {
+      setIsPopupVisible(false);
+    }, 2000);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -88,7 +99,6 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
     }
 */
   }
-  
 
  function handleNameChangeSubmit(event) {
     event.preventDefault();
@@ -143,8 +153,9 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
       {list && (
         <div>
           {isLoggedIn && 
-            <button className="secondary-button" onClick={(e) => navigator.clipboard.writeText("https://weigh-my-pack-react.onrender.com/"+ list.id)}>Share List</button>
+            <button className="secondary-button" onClick={handleCopyLink}>Share List</button>
           }
+          {isPopUpVisible && <ShareLinkPopUp /> }
           <header>
             {!isEditing && 
               <h2>

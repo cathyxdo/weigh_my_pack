@@ -14,6 +14,7 @@ export default function SharePage() {
         .then(result => {
             console.log(result);
             setList(result.data);
+        }).catch(err => {
         })
     },[]);
 
