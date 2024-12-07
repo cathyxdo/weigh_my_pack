@@ -88,7 +88,7 @@ export default function ChartSection({list}) {
                         {categorySubtotals.map((category) => 
                         <tr>
                             <td>{category.name}</td>
-                            <td>{category.subtotalWeight + ' ' + currentWeightUom}</td>
+                            <td>{parseFloat(category.subtotalWeight).toFixed(2) + ' ' + currentWeightUom}</td>
                         </tr>
                         )
                         }
@@ -99,7 +99,7 @@ export default function ChartSection({list}) {
                             <td>
                                 Total Weight
                             </td>
-                            <td>{total + ' ' }
+                            <td>{parseFloat(total).toFixed(2) + ' '}
                                 <select name="weight_uom" value={currentWeightUom} onChange={handleChange}>
                                     <option value="oz">oz</option>
                                     <option value="lb">lb</option>
