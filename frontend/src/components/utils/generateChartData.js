@@ -21,8 +21,6 @@ export default function generateChartData(list, currentWeightUom) {
         chartData.chartLabels.push(categoryName);
         chartData.data.push(subtotalWeight);
     }
-    chartData.total = parseFloat(chartData.total.toFixed(2));
-
 
     function weightConversion(weight, from_uom, to_uom) {
         function convertToG(weight, from_uom) {
@@ -38,10 +36,10 @@ export default function generateChartData(list, currentWeightUom) {
         }
 
         function convertGToUom(weight_g, to_uom) {
-            if (to_uom === 'g') return parseFloat((weight_g / 1000).toFixed(2));
-            if (to_uom === 'kg') return parseFloat((weight_g / 1000000).toFixed(2));
-            if (to_uom === 'oz') return parseFloat((weight_g / 28349.5).toFixed(2));
-            if (to_uom === 'lb') return parseFloat((weight_g / 453592).toFixed(2));
+            if (to_uom === 'g') return parseFloat(weight_g / 1000);
+            if (to_uom === 'kg') return parseFloat(weight_g / 1000000);
+            if (to_uom === 'oz') return parseFloat(weight_g / 28349.5);
+            if (to_uom === 'lb') return parseFloat(weight_g / 453592);
         }
 
         return convertGToUom(convertToG(weight, from_uom), to_uom);
