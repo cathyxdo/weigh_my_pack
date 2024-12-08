@@ -1,3 +1,5 @@
 env/
 env2/
 config.py
+
+*.sqlite3
