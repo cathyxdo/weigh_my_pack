@@ -18,8 +18,6 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
     const [itemData, setItemData] = useState(emptyItem);
     const [editing, setEditing] = useState(false);
     const [categoryName, setCategoryName] = useState(category.name);
-    const [showDeleteIcon, setShowDeleteIcon] = useState(false);
-    const [showAddItemIcon, setShowAddItemIcon] = useState(false);
 
     function handleChange(event) {
         setItemData({
@@ -35,25 +33,6 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
             axios.post('https://weigh-my-pack.onrender.com/api/items/', itemData)
             .then(result => {
                 setApiList(updateList(result.data));
-/*                 setApiList(apiList.map((list,index) => {
-                    if (index === selectedIndex) {
-                        list.categories.map((c) => {
-                            if (c.id === category.id) {
-
-                                c.items = [
-                                    ...c.items,
-                                    result.data
-                                ]
-                                return c;
-                            } else {
-                                return c;
-                            }
-                        })
-                        return list
-                    } else {
-                        return list;
-                    }
-                })) */
             }).catch(err => {
                 console.log({err});
             });
@@ -63,28 +42,6 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
             const newList = updateList(newItem);
             localStorage.setItem("localList", JSON.stringify(newList));
             setApiList(newList);
-
-            /*
-            setApiList(apiList.map((list,index) => {
-                if (index === selectedIndex) {
-                    list.categories.map((c) => {
-                        if (c.id === category.id) {
-
-                            c.items = [
-                                ...c.items,
-                                newItem
-                            ]
-                            return c;
-                        } else {
-                            return c;
-                        }
-                    })
-                    return list
-                } else {
-                    return list;
-                }
-            }))
-            */
         }
         setItemData(emptyItem);
 
@@ -124,21 +81,6 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
         if (isLoggedIn) {
             axios.patch('/api/categories/' + category.id + '/', {name: categoryName})
             .then(result => {
-    /*             setApiList(apiList.map((list, index) => {
-                    if (index === selectedIndex) {
-                        list.categories.map((c) => {
-                            if (c.id === category.id) {
-                                c.name = categoryName;
-                                return c;
-                            } else {
-                                return c;
-                            }
-                        })
-                        return list;
-                    } else {
-                        return list;
-                    }
-                })) */
                 updateStateEditCategory();
                 setEditing(false);
             }).catch(err => {
@@ -176,13 +118,10 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
                     <h3>
                         <span className="list-details-name" onClick={() => setEditing(true)}>{category.name} </span>
                     </h3>
-                    {showDeleteIcon === true && 
-                        <svg className="delete-icon" onMouseLeave={() => setShowDeleteIcon(false)} onClick={() => setDeleteCategoryModal({'show': true, 'categoryId': category.id})} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path  d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41L15.59 7Z"></path></svg>
-                    }
-
-                    {showDeleteIcon === false && 
-                        <svg onMouseOver={() => setShowDeleteIcon(true)}  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"></path></svg>
-                    }
+                    <div className="delete-category-wrapper">
+                        <svg className="delete-icon" onClick={() => setDeleteCategoryModal({'show': true, 'categoryId': category.id})} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path  d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41L15.59 7Z"></path></svg>
+                        <svg className="delete-icon-outline"xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"></path></svg>
+                    </div>
                 </div>
             }
 
@@ -261,14 +200,17 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
             
             {!showItemForm && 
 
-                <button className="add-item" onClick={() => setShowForm(true)} onMouseOver={() => setShowAddItemIcon(true)} onMouseLeave={() => setShowAddItemIcon(false)} >
-                    {showAddItemIcon === false &&
-                        <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
-                    }
-                    {showAddItemIcon === true && 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
-                    }
-                    Add Item
+                <button className="add-item" onClick={() => setShowForm(true)}>
+                    <div className="add-icon-wrapper">
+                        <svg className="plus-outline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
+                        </svg>
+                        <svg className="plus-filled" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path>
+                        </svg>
+                    </div>
+                    
+                    <div>Add Item</div>
                 </button>
             
             }

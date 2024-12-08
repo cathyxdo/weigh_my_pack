@@ -65,6 +65,29 @@ button {
 .add-category:hover > .category-line {
     background: var(--color-dark-orange);
 }
+.delete-category-wrapper {
+    position: relative;
+    width: 24px; /* Match the width of the SVG */
+    height: 24px; /* Match the height of the SVG */
+
+}
+.delete-category-wrapper svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 0.3s ease;
+}
+.delete-category-wrapper > .delete-icon {
+    visibility: hidden;
+}
+.delete-category-wrapper:hover > .delete-icon-outline {
+    visibility: hidden;
+}
+.delete-category-wrapper:hover > .delete-icon {
+    visibility: visible;
+}
 table {
     table-layout: fixed;
     width: 100%;
@@ -254,22 +277,47 @@ div {
 .add-item {
     color: var(--color-dark-grey);
     display: flex;
-    justify-content: center;
     align-items: center;
     font-size: 14px;
+    font-weight: 600;
+    gap: 4px;
 }
+
+ .add-icon-wrapper {
+    position: relative;
+    width: 24px; /* Match the width of the SVG */
+    height: 24px; /* Match the height of the SVG */
+
+} 
+
+.add-icon-wrapper svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease;
+}
+
 .add-item svg {
     color: var(--color-dark-orange);
-    margin: 0px 2px 3px 0;
+    /* margin: 0px 2px 3px 0; */
+}
+.add-item .plus-filled {
+    visibility: hidden;
+}
+.add-item:hover .plus-outline {
+    visibility: hidden;
+}
+
+.add-item:hover .plus-filled {
+    visibility: visible;
 }
 .add-item:hover {
     color: var(--color-dark-orange);
     font-weight: 600;
 }
 
-.add-list svg {
-    color: var(--color-dark-orange);
-}
 .add-list:hover {
     color: var(--color-dark-orange);
 }
@@ -592,3 +640,4 @@ td {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 999;
 }
+
