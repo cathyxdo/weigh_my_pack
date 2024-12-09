@@ -109,17 +109,13 @@ td {
 td:focus {
     outline: solid 2px rgb(75, 124, 177);
 }
-/* td:hover {
-    background-color: var(--color-light-grey);
-} */
+
 .item-icon {
     fill: var(--color-dark-grey);
 }
-/* .item-icon:hover {
-    background-color: transparent;
-} */
+
 .item-icon > button:hover {
-    fill: var(--color-font-black);
+    fill: var(--color-red);
 
 }
 th,td {
@@ -585,7 +581,20 @@ thead th {
 .edit-item {
     height: 80px;
 }
-.edit-item input {
+.itemRow > .item-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.itemRow > .item-icon > button {
+    visibility: hidden;
+}
+.itemRow:hover > .item-icon > button {
+    visibility: visible;
+}
+.item-icon > .edit:hover {
+    text-decoration: underline;
+    font-weight: 800;
 }
 .home {
     text-decoration: none;

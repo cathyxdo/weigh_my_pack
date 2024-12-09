@@ -26,33 +26,6 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         if (isLoggedIn) {
             axios.patch('https://weigh-my-pack.onrender.com/api/items/' + item.id + '/', itemData)
             .then(result => {
-    /*             setApiList(apiList.map((list, index) => {
-                    if (index === selectedIndex) {
-                        list.categories.map((c) => {
-                            if (c.id === categoryId) {
-                                c.items.map((i) => {
-                                    if (i.id === item.id) {
-                                        i.name = itemData.name;
-                                        i.description = itemData.description;
-                                        i.weight = itemData.weight;
-                                        i.weight_uom = itemData.weight_uom;
-                                        i.qty = itemData.qty;
-                                        i.link = itemData.link;
-                                        return i;
-                                    } else {
-                                        return i;
-                                    }
-                                })
-                                return c;
-                            } else {
-                                return c;
-                            }
-                        })
-                        return list;
-                    } else {
-                        return list;
-                    }
-                })) */
                 updateStateEditItem();
                 setEditing(false);
                 console.log(result);
@@ -102,21 +75,6 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         if (isLoggedIn) {
             axios.delete('/api/items/' + item.id + '/')
             .then(result => {
-                /* setApiList(apiList.map((list, index) => {
-                    if (index === selectedIndex) {
-                        list.categories.map((c) => {
-                            if (c.id === categoryId) {
-                                c.items = c.items.filter((i) => i.id !== item.id)
-                                return c;
-                            } else {
-                                return c;
-                            }
-                        }) 
-                        return list;
-                    } else {
-                        return list;
-                    }
-                })) */
                 updateStateDeleteItem();
             }).catch(err => {
                 console.log(err);
@@ -150,7 +108,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         <>
         {editing === false &&
 
-            <tr onMouseOver={() => setShowItemIcons(true)} onMouseLeave={() => setShowItemIcons(false)}>
+            <tr className="itemRow">
                 <td>
                     {!item.link && 
                     item.name
@@ -168,17 +126,11 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                 <td>
                     {item.qty}
                 </td>
-                <td className="item-icon">
-                {showItemIcons === true && 
-                    <>
-                        <button onClick={() => setEditing(true)}>Edit</button>
-
-                        <button onClick={handleDelete} title="Delete Item">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"></path></svg>                    
-                        </button>
-                    </>
-                }
-                 
+                <td className="item-icon">         
+                    <button className="edit" onClick={() => setEditing(true)}>Edit</button>
+                    <button className="delete" onClick={handleDelete} title="Delete Item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"></path></svg>                    
+                    </button>
                 </td>
             </tr>
 
