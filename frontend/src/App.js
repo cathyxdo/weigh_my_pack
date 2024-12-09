@@ -6,107 +6,14 @@ import ModalDeleteCategory from './components/ModalDeleteCategory.js';
 import axiosInstance from './axios.js';
 function App() {
   const [id, setId] = useState(0);    // show first list by default
-  // const [listName, setListName] = useState('');
   const [apiList, setApiList] = useState([]);
   const [currentListName, setCurrentListName] = useState('');
-  const [showAddListIcon, setShowAddListIcon] = useState(false);
   const [showAddListModal, setShowAddListModal] = useState(false);
   const [deleteCategoryModal, setDeleteCategoryModal] = useState({show: false, categoryId: ''});
   const [showSideBar, setShowSideBar] = useState(true);
-  const [hoverHamburgerMenu, setHoverHamburgerMenu] = useState(false);
-  /*
-  const [localList, setLocalList] = useState(() => {
-    const savedState = localStorage.getItem("localList");
-    const localList = JSON.parse(savedState);
-    return localList || [];
-  });
-*/
+
   let localList = localStorage.getItem("localList") ? JSON.parse(localStorage.getItem("localList")) : [];
-  /*
-  localList = [
-        {
-            "id": 1,
-            "name": "New List Test - 1",
-            "notes": null,
-            "categories": [
-                {
-                    "id": 1,
-                    "name": "Tent",
-                    "items": [
-                        {
-                            "id": 1,
-                            "name": "Tent Poles",
-                            "description": "",
-                            "weight": 10.0,
-                            "weight_uom": "oz",
-                            "qty": 1,
-                            "link": null,
-                            "category": 1
-                        },
-                        {
-                            "id": 2,
-                            "name": "test",
-                            "description": "",
-                            "weight": 3.0,
-                            "weight_uom": "oz",
-                            "qty": 1,
-                            "link": "",
-                            "category": 1
-                        },
-                        {
-                            "id": 3,
-                            "name": "test",
-                            "description": "",
-                            "weight": 1.0,
-                            "weight_uom": "oz",
-                            "qty": 1,
-                            "link": "",
-                            "category": 1
-                        }
-                    ],
-                    "list": 1
-                },
-                {
-                    "id": 3,
-                    "name": "new category",
-                    "items": [
-                        {
-                            "id": 4,
-                            "name": "test-1",
-                            "description": "",
-                            "weight": 1.0,
-                            "weight_uom": "oz",
-                            "qty": 1,
-                            "link": "",
-                            "category": 3
-                        },
-                        {
-                            "id": 5,
-                            "name": "test2",
-                            "description": "",
-                            "weight": 5.0,
-                            "weight_uom": "oz",
-                            "qty": 1,
-                            "link": "",
-                            "category": 3
-                        },
-                        {
-                            "id": 6,
-                            "name": "test 5",
-                            "description": "",
-                            "weight": 1.0,
-                            "weight_uom": "oz",
-                            "qty": 3,
-                            "link": "",
-                            "category": 3
-                        }
-                    ],
-                    "list": 1
-                }
-            ]
-        }
-    ]
-    */
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleClick(index) {
@@ -145,36 +52,27 @@ function App() {
 
           <Menu apiList={apiList} setApiList={setApiList} onSelectList={handleClick} selectedIndex={id} isLoggedIn={isLoggedIn}/>
 
-          <button className="add-item"  onMouseOver={() => setShowAddListIcon(true)} onMouseLeave={() => setShowAddListIcon(false)} onClick={()=> setShowAddListModal(true)}>
-              {showAddListIcon === false &&
-                  <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
-              }
-              {showAddListIcon === true && 
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
-              }
+          <button className="add-item" >
+            <div className="add-icon-wrapper">
+              <svg className="plus-outline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+              <svg className="plus-filled" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+            </div>
               Add List
             </button>
         </div>
         <div className={"collapsedSideBar "+ (showSideBar ? 'showBar' : 'hideBar' )}>
               <button>
               </button>
-              <button className="showListsButton" onClick={() => setShowSideBar(true)} onMouseOver={() => setHoverHamburgerMenu(true)} onMouseOut={() => setHoverHamburgerMenu(false)} >
-                {!hoverHamburgerMenu &&
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.713-.288T3 17q0-.425.288-.713T4 16h16q.425 0 .713.288T21 17q0 .425-.288.713T20 18H4Zm0-5q-.425 0-.713-.288T3 12q0-.425.288-.713T4 11h16q.425 0 .713.288T21 12q0 .425-.288.713T20 13H4Zm0-5q-.425 0-.713-.288T3 7q0-.425.288-.713T4 6h16q.425 0 .713.288T21 7q0 .425-.288.713T20 8H4Z"></path></svg>  
-                }
-                {hoverHamburgerMenu &&
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13.925 19q-.625 0-.888-.537t.088-1.038L17 12l-3.875-5.425q-.35-.5-.088-1.038T13.925 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.288t-.15.287l-4.225 5.95q-.15.2-.375.338t-.5.137Zm-5.95 0q-.625 0-.887-.537t.087-1.038L11.05 12L7.175 6.575q-.35-.5-.087-1.038T7.975 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.3t-.15.275l-4.225 5.95q-.15.2-.375.338t-.5.137Z"></path></svg>
-                }
+              <button className="showListsButton" onClick={() => setShowSideBar(true)}>
+                <svg className="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.713-.288T3 17q0-.425.288-.713T4 16h16q.425 0 .713.288T21 17q0 .425-.288.713T20 18H4Zm0-5q-.425 0-.713-.288T3 12q0-.425.288-.713T4 11h16q.425 0 .713.288T21 12q0 .425-.288.713T20 13H4Zm0-5q-.425 0-.713-.288T3 7q0-.425.288-.713T4 6h16q.425 0 .713.288T21 7q0 .425-.288.713T20 8H4Z"></path></svg>  
+                <svg className="arrowIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13.925 19q-.625 0-.888-.537t.088-1.038L17 12l-3.875-5.425q-.35-.5-.088-1.038T13.925 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.288t-.15.287l-4.225 5.95q-.15.2-.375.338t-.5.137Zm-5.95 0q-.625 0-.887-.537t.087-1.038L11.05 12L7.175 6.575q-.35-.5-.087-1.038T7.975 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.3t-.15.275l-4.225 5.95q-.15.2-.375.338t-.5.137Z"></path></svg>
               </button>
         </div>
         <div className={"mobileMenu " + (showSideBar ? 'showBar' : 'hideBar' ) }>
-          <button onClick={() => setShowSideBar(true)} onMouseOver={() => setHoverHamburgerMenu(true)} onMouseOut={() => setHoverHamburgerMenu(false)}>
-          {!hoverHamburgerMenu &&
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.713-.288T3 17q0-.425.288-.713T4 16h16q.425 0 .713.288T21 17q0 .425-.288.713T20 18H4Zm0-5q-.425 0-.713-.288T3 12q0-.425.288-.713T4 11h16q.425 0 .713.288T21 12q0 .425-.288.713T20 13H4Zm0-5q-.425 0-.713-.288T3 7q0-.425.288-.713T4 6h16q.425 0 .713.288T21 7q0 .425-.288.713T20 8H4Z"></path></svg>  
-          }
-          {hoverHamburgerMenu &&
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13.925 19q-.625 0-.888-.537t.088-1.038L17 12l-3.875-5.425q-.35-.5-.088-1.038T13.925 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.288t-.15.287l-4.225 5.95q-.15.2-.375.338t-.5.137Zm-5.95 0q-.625 0-.887-.537t.087-1.038L11.05 12L7.175 6.575q-.35-.5-.087-1.038T7.975 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.3t-.15.275l-4.225 5.95q-.15.2-.375.338t-.5.137Z"></path></svg>
-          }         
+          <button className="showListsButton" onClick={() => setShowSideBar(true)} >
+            <svg className="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.713-.288T3 17q0-.425.288-.713T4 16h16q.425 0 .713.288T21 17q0 .425-.288.713T20 18H4Zm0-5q-.425 0-.713-.288T3 12q0-.425.288-.713T4 11h16q.425 0 .713.288T21 12q0 .425-.288.713T20 13H4Zm0-5q-.425 0-.713-.288T3 7q0-.425.288-.713T4 6h16q.425 0 .713.288T21 7q0 .425-.288.713T20 8H4Z"></path></svg>  
+            <svg className="arrowIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M13.925 19q-.625 0-.888-.537t.088-1.038L17 12l-3.875-5.425q-.35-.5-.088-1.038T13.925 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.288t-.15.287l-4.225 5.95q-.15.2-.375.338t-.5.137Zm-5.95 0q-.625 0-.887-.537t.087-1.038L11.05 12L7.175 6.575q-.35-.5-.087-1.038T7.975 5q.275 0 .5.138t.375.337l4.225 5.95q.1.125.15.275t.05.3q0 .15-.05.3t-.15.275l-4.225 5.95q-.15.2-.375.338t-.5.137Z"></path></svg>
+                  
           </button>
         </div>
 

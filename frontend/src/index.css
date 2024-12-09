@@ -202,6 +202,24 @@ div {
 .showListsButton:hover {
     color: var(--color-font-black)
 }
+.showListsButton {
+    display: relative;
+}
+.showListsButton > svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.showListsButton:hover > .hamburgerIcon {
+    visibility: hidden;
+}
+.showListsButton > .arrowIcon {
+    visibility: hidden;
+}
+.showListsButton:hover > .arrowIcon {
+    visibility: visible;
+}
+
 .collapsedSideBar.showBar {
     display: none;
 }
