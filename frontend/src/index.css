@@ -551,10 +551,20 @@ div {
     gap: 10px;
     margin-top: 5px;
 }
-
+.nav-list svg {
+    visibility: hidden;
+}
 .nav-list:hover {
     background-color: var(--color-light-grey-2);
     border-radius: 4px;
+}
+.nav-list:hover svg {
+    visibility: visible;
+}
+
+.nav-list svg:hover {
+    color: var(--color-red);
+
 }
 .listName {
     width: 100%;
@@ -579,10 +589,6 @@ thead th {
 }
 .home {
     text-decoration: none;
-}
-
-.deleteList:hover {
-    color: var(--color-red);
 }
 
 .userHeader {
