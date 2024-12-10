@@ -23,7 +23,7 @@ axiosInstance.interceptors.response.use(
 		if (typeof error.response === 'undefined') {
 			alert(
 				'A server/network error occurred. ' +
-					'Logging in and viewing your lists stored to your user account will not work.' + 
+					'Logging in and viewing your lists stored to your user account will not work. ' + 
 					'However, you can still create and add to your lists stored on local' 
 					
 			);
