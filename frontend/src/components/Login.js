@@ -44,9 +44,12 @@ export default function Login() {
     }
     return (
 
-        <div className="LoginForm">
-            <form action="" className="form">
-                <h1 className="title">Login</h1>
+        <div className="login">
+            <Link to="/"><h2>Weigh My Pack 🎒</h2></Link>
+
+            <form action="" className="loginform">
+
+                <h2 className="title">Login</h2>
     
                 <div className="inputContainer">
                     <label htmlFor="email" className="label">Email</label>

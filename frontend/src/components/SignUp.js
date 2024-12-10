@@ -32,8 +32,10 @@ export default function SignUp() {
 
 
     return (
-        <div className="signupForm">
-            <form action="" class="form">
+        <div className="signup">
+            <Link to="/"><h2>Weigh My Pack 🎒</h2></Link>
+
+            <form action="" className="signupform">
                 <h1 class="title">Sign up</h1>
     
                 <div className="inputContainer">
