@@ -421,45 +421,42 @@ div {
 
 .item-form {
     /* border: solid var(--color-grey); */
-    border: solid 2px var(--color-light-blue-3);
+    border: solid 1px var(--color-dark-grey);
     padding: 20px;
     border-radius: 10px;
     margin-top: 10px;
-    width: 500px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+    width: 50%;
+    font-size: 14px;
+}
+.item-form div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
-.item-form label {
-    font-size: 14px;
-    margin-left: 5px;
-    margin-right: 5px;
+.item-form input, .item-form select {
+    padding: 8px;
 }
-.item-form-1 {
+
+.item-form .quantity {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
-
-.item-form-2  {
-    display: flex;
+.item-form .requiredfield {
+    text-align: right;
 }
-
-.item-form-2 input {
-    width: 100%;
+.button-row button {
+    margin-top: 10px;
 }
-
-.button-row {
-    display:flex;
-    gap: 10px;
-}
-
 .chart-details {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 230px;
 }
 
 .chart-details > * {
@@ -544,7 +541,6 @@ div {
 
 .chart-table {
     text-align: left;
-    
 }
 
 .chart-details > div {
@@ -635,7 +631,7 @@ thead th {
 td {
     line-height: 10px;
 }
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
 
     .sidebar {
         position: fixed;
@@ -651,11 +647,20 @@ td {
     .mobileMenu {
         display: block
     }
+
   }
 
-@media only screen and (min-width: 600px) {
+@media screen and (min-width: 600px) {
     .mobileMenu {
         display: none
+    }
+}
+@media screen and (max-width: 768px) {
+    .chart-details {
+        flex-direction: column-reverse;
+    }
+    .item-form {
+        width: 100%;
     }
 }
 
@@ -674,3 +679,49 @@ td {
     z-index: 999;
 }
 
+.table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: small;
+
+  }
+  
+  .tablerow {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid #ddd; /* Optional: Adds a table-like border */
+  }
+  .tablerow:not(.tableheader):hover, .tablerow.editing {
+    background-color: var(--color-light-grey-2);
+    align-items: center;
+  }
+
+  .tableheader {
+    font-weight: bold;
+    border-top: none;
+    background-color: none;
+  }
+
+  .name, .weight, .qty, .editmode {
+    flex: 1; /* Takes 1 flex space */
+    padding: 8px; /* Optional: Adds spacing for readability */
+  }
+
+  .desc {
+    flex: 2; /* Takes 2 flex spaces */
+    padding: 8px;
+  }
+  
+  .tablerow > div {
+    text-align: left; /* Aligns text to the left */
+  }
+.tablerow input {
+    width: 50%;
+    padding: 4px;
+}
+.weight input, .qty input {
+    width: 20%;
+    min-width: 20px;
+    margin-right: 4px;
+}
