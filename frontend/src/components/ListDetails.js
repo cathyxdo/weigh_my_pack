@@ -209,6 +209,44 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
       {!isLoggedIn &&
         <p>FYI all of your lists will be stored on your computer. Log in or sign up for an account to be able to share your list with others! [Future feature]</p>
       }
+      <div className="table">
+        <div className="tablerow tableheader">
+          <div className="name ">Name</div>
+          <div className="desc ">Description</div>
+          <div className="weight ">Weight</div>
+          <div className="qty">Qty</div>
+          <div className="editmode"></div>
+        </div>
+        <div className="tablerow">
+          <div className="name ">Item 1</div>
+          <div className="desc ">Description 1</div>
+          <div className="weight ">10 oz</div>
+          <div className="qty">1</div>
+          <div className="editmode"></div>
+        </div>
+        <div className="tablerow editing">
+          <div className="name "><input value="Item 1 "/></div>
+          <div className="desc ">
+            <input value="Description 1"/>
+          </div>
+          <div className="weight ">
+          <input value="10"/>
+          <select name="weight_uom" value='oz'>
+                        <option value="oz">oz</option>
+                        <option value="lb">lb</option>
+                        <option value="g">g</option>
+                        <option value="kg">kg</option>
+                    </select>
+          </div>
+          <div className="qty">
+          <input type='number' value="1" name="qty"/>
+          </div>
+          <div className="editmode">
+            <button className="primary-button">Update Item</button>
+            <div>Cancel Editing</div>              
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
