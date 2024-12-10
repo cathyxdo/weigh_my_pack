@@ -154,16 +154,20 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
             }
             {showItemForm && 
                 <form className="item-form" onSubmit={handleSubmitItem}>
-                    <div className="item-form-1">
-                        <span>
-                            <label className="item-label" htmlFor="name">Name*</label>
-                            <input type='text' name="name" value={itemData.name} onChange={handleChange}></input>
-                        </span>
-                        <span>
+                    <div>
+                        <label className="item-label" htmlFor="name">Name*</label>
+                        <input type='text' name="name" value={itemData.name} onChange={handleChange}></input>
+                    </div>
+                    <div className="quantity">
+                        <div>
+                            <label htmlFor="qty">Qty*</label>
+                            <input type='number' name="qty" min="0" value={itemData.qty} onChange={handleChange}></input>
+                        </div> 
+                        <div>
                             <label htmlFor="weight">Weight*</label>
-                            <input type='number' name ="weight" value={itemData.weight} onChange={handleChange}></input>
-                        </span>
-                        <span>
+                            <input type='number' name ="weight" min="0" value={itemData.weight} onChange={handleChange}></input>
+                        </div>
+                        <div>
                             <label htmlFor="uom">Uom</label>
                             <select name="weight_uom" value={itemData.weight_uom} onChange={handleChange}>
                                 <option value="oz">oz</option>
@@ -171,19 +175,21 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
                                 <option value="g">g</option>
                                 <option value="kg">kg</option>
                             </select>
-                        </span>
+                        </div>
                     </div>
-                    <div className="item-form-2">
+
+                    
+
+                    <div>
                         <label htmlFor="description">Description</label>
                         <input type='text' name="description" value={itemData.description} onChange={handleChange}></input>
-                        
-
                     </div>
                     <div>
                         <label htmlFor="link">Link</label>
                         <input type='link' name="link" value={itemData.link} onChange={handleChange}></input>
-                        <label htmlFor="qty">Qty*</label>
-                        <input type='number' name="qty" value={itemData.qty} onChange={handleChange}></input>
+                    </div>
+                    <div className="requiredfield">
+                        * Required Field
                     </div>
                     <div className="button-row">
                         <button className="primary-button" type='submit' disabled={isValidItem(itemData) ? false : true}>Add item</button>
@@ -195,6 +201,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
                         }>Cancel</button>
 
                     </div>
+
                 </form>
             }
             
