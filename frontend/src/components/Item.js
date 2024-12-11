@@ -144,6 +144,11 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                 </div>
                 <div className="desc">
                     <input type='text'  name="description" value={itemData.description} onChange={handleChange}></input>
+                    <div className="link">
+                        <span>Link:</span>
+                        <input type='link'  name="link" value={itemData.link} onChange={handleChange}></input>
+                    </div>
+                    
                 </div>
                 <div className="weight">
                     <input type='number'  name ="weight" value={itemData.weight} onChange={handleChange}></input>

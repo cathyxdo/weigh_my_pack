@@ -4,7 +4,7 @@
     --color-dark-orange: #d15512;
     --color-light-grey: rgb(247, 247, 247);
     --color-light-grey-2: rgb(240, 240, 240);
-    --color-grey: rgb(232, 232, 232);
+    --color-grey: rgb(207, 207, 207);
     --color-dark-grey: grey;
     --color-blue: #426490;
     --color-light-blue: #90aacb;
@@ -29,9 +29,7 @@ body {
 .category {
     display: flex;
     align-items: center;
-}
-.category h3 {
-    width: 95%;
+    justify-content: space-between;
 }
 button {
     border: none;
@@ -173,6 +171,7 @@ div {
     padding: 20px 30px;
     background: var(--color-light-grey);
     transition: width 5s;
+    z-index:20;
 }
 .sideBarHeader {
     display: flex;
@@ -227,12 +226,12 @@ div {
 
 .listDetails {
     margin-left: 300px;
-    padding: 60px 20px;
-    transition: 1s;
+    padding: 60px 30px;
+    /*transition: 1s;*/
 }
 .listDetails.hideBar {
-    margin-left: 20px;
-    transition: margin-left .5s;
+    margin-left: 0px;
+   /* transition: margin-left .5s;*/
 }
 .list-details-name {
     padding: 8px;
@@ -315,7 +314,7 @@ div {
   cursor: pointer;
   display: inline-block;
   font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   height: 30px;
   line-height: 20px;
@@ -357,7 +356,7 @@ div {
     cursor: pointer;
     display: inline-block;
     font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     height: 30px;
     line-height: 20px;
@@ -386,6 +385,8 @@ div {
     line-height: 14px;
     padding-top: 5px;
     padding-bottom: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
     margin: 5px 0;
 }
 
@@ -398,7 +399,7 @@ div {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    width: 50%;
+    width: fit-content;
     font-size: 14px;
 }
 .item-form div {
@@ -467,7 +468,6 @@ div {
 
 .modal-new-list form input,textarea{
     padding: 5px;
-    border-radius: 4px;
 }
 .modal-new-list .modal-content {
     display: flex;
@@ -587,7 +587,7 @@ thead th {
 td {
     line-height: 10px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
 
     .sidebar {
         position: fixed;
@@ -598,15 +598,18 @@ td {
         display: none;
     }
     .listDetails {
-        margin-left: 20px;
+        margin-left: 0px;
     }
     .mobileMenu {
         display: block
     }
+    .chart-details {
+        flex-direction: column-reverse;
+    }
 
   }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
     .mobileMenu {
         display: none
     }
@@ -614,9 +617,6 @@ td {
 @media screen and (max-width: 768px) {
     .chart-details {
         flex-direction: column-reverse;
-    }
-    .item-form {
-        width: 100%;
     }
 }
 
@@ -648,13 +648,23 @@ td {
     width: 100%;
     border-top: 1px solid #ddd; /* Optional: Adds a table-like border */
     justify-content: center;
-
+  }
+  .name > a {
+    text-decoration: underline;
   }
   .tablerow:not(.tableheader):hover, .tablerow.editing {
-    background-color: var(--color-light-grey-2);
+    /*background-color: var(--color-light-grey);*/
+    border-left: solid 4px var(--color-dark-grey);
     align-items: center;
   }
-
+  .tablerow:not(.tableheader):hover {
+    background-color: var(--color-light-grey);
+  }
+  .tablerow > div {
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
   .tableheader {
     font-weight: bold;
     border-top: none;
@@ -677,6 +687,7 @@ td {
     fill: var(--color-red);
   }
 
+  
   .name, .weight, .qty, .editmode {
     display: flex;
     align-items: center;
@@ -686,22 +697,34 @@ td {
 
   .desc {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     flex: 2; /* Takes 2 flex spaces */
-    padding: 4px;
+    gap: 4px;
+  }
+  .desc .link {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .link input {
+    width: 100%;
   }
   
   .tablerow > div {
     text-align: left; /* Aligns text to the left */
-
   }
-.tablerow input {
-    width: 50%;
+.name input, .weight input, .qty input {
+    padding: 4px;
+    width: 100%;
+}
+.desc input {
     padding: 4px;
 }
-.weight input, .qty input {
-    width: 20%;
-    min-width: 20px;
+.link span {
+    font-weight: 600;
+}
+.weight input {
     margin-right: 4px;
 }
 .loginform, .signupform, .forgotpasswordform {
@@ -744,4 +767,7 @@ a:visited {
 
 form a:hover {
     text-decoration: underline;
+}
+.categorySection {
+    margin-bottom: 20px;
 }
