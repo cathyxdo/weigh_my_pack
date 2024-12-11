@@ -89,6 +89,10 @@ button {
 .delete-category-wrapper:hover > .delete-icon {
     visibility: visible;
 }
+.delete-icon:hover {
+    cursor: pointer;
+    fill: var(--color-red);
+}
 table {
     table-layout: fixed;
     width: 100%;
@@ -101,7 +105,7 @@ th {
 td {
     padding: 3px 0;
     border-top: 1px solid #ddd ;
-    font-size: 12px;
+    font-size: 14px;
     height: 30px;
 }
 .shareView td {
@@ -119,10 +123,6 @@ td:focus {
     fill: var(--color-red);
 
 }
-th,td {
-    padding: 0 10px;
-}
-
 
 .table-form {
     background: #FFFFFF;
@@ -197,12 +197,9 @@ div {
 .showListsButton {
     display: flex;
     align-items: center;
-    color: var(--color-dark-grey)
+    color: var(--color-font-black)
     }
 
-.showListsButton:hover {
-    color: var(--color-font-black)
-}
 .showListsButton {
     display: relative;
 }
@@ -244,35 +241,7 @@ div {
     background-color: var(--color-light-grey-2);
     border-radius: 4px;
 }
-/* 
-.item-table input {
-    border: none;
-    background: transparent;
-    outline:none;
-} */
 
-.item-weight, .item-qty {
-    width: 40px;
-}
-
-.item-link {
-    color: black;
-}
-
-.item-link:hover {
-    color:#c35313;
-}
-.edit-icon {
-    fill: grey;
-}
-.edit-icon:hover {
-    fill: black;
-}
-.delete-icon {
-    fill: var(--color-red);
-    cursor: pointer;
-
-}
 .edit-input {
     height: 30px;
     width: 50%;
@@ -590,23 +559,9 @@ tfoot td {
 
 thead th {
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
 }
 
-.edit-item {
-    height: 80px;
-}
-.itemRow > .item-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.itemRow > .item-icon > button {
-    visibility: hidden;
-}
-.itemRow:hover > .item-icon > button {
-    visibility: visible;
-}
 .item-icon > .edit:hover {
     text-decoration: underline;
     font-weight: 800;
@@ -692,6 +647,8 @@ td {
     display: flex;
     width: 100%;
     border-top: 1px solid #ddd; /* Optional: Adds a table-like border */
+    justify-content: center;
+
   }
   .tablerow:not(.tableheader):hover, .tablerow.editing {
     background-color: var(--color-light-grey-2);
@@ -701,21 +658,42 @@ td {
   .tableheader {
     font-weight: bold;
     border-top: none;
-    background-color: none;
+    background-color: none; 
+  }
+  .tablerow .edit, .tablerow .delete {
+    visibility: hidden;
+  }
+  .tablerow:hover button {
+    visibility: visible;
+  }
+
+  .editmode .edit:hover {
+    text-decoration: underline;
+  }
+  .editmode .edit {
+    font-weight: 600;
+  }
+  .editmode .delete:hover {
+    fill: var(--color-red);
   }
 
   .name, .weight, .qty, .editmode {
+    display: flex;
+    align-items: center;
     flex: 1; /* Takes 1 flex space */
-    padding: 8px; /* Optional: Adds spacing for readability */
+    padding: 4px; /* Optional: Adds spacing for readability */
   }
 
   .desc {
+    display: flex;
+    align-items: center;
     flex: 2; /* Takes 2 flex spaces */
-    padding: 8px;
+    padding: 4px;
   }
   
   .tablerow > div {
     text-align: left; /* Aligns text to the left */
+
   }
 .tablerow input {
     width: 50%;
