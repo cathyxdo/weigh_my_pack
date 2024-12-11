@@ -108,58 +108,56 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         <>
         {editing === false &&
 
-            <tr className="itemRow">
-                <td>
+            <div className="tablerow">
+                <div className="name">
                     {!item.link && 
                     item.name
                     }
                     {item.link &&
                         <a href={item.link} target="_blank">{item.name}</a>
                     }
-                </td>
-                <td>
+                </div>
+                <div className="desc">
                     {item.description}
-                </td>
-                <td>
+                </div>
+                <div className="weight">
                     {item.weight + ' ' + item.weight_uom}
-                </td>
-                <td>
+                </div>
+                <div className="qty">
                     {item.qty}
-                </td>
-                <td className="item-icon">         
+                </div>
+                <div className="editmode">         
                     <button className="edit" onClick={() => setEditing(true)}>Edit</button>
                     <button className="delete" onClick={handleDelete} title="Delete Item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"></path></svg>                    
                     </button>
-                </td>
-            </tr>
+                </div>
+            </div>
 
 
         }
         {editing === true &&
 
-            <tr className="edit-item" >
-                <td>
+            <div className="tablerow editing" >
+                <div className="name">
                  <input type='text' name="name" value={itemData.name} onChange={handleChange}></input> 
-                 <label>Link</label>
-                 <input type='link'  name="link" value={itemData.link} onChange={handleChange}></input>
-                </td>
-                <td>
+                </div>
+                <div className="desc">
                     <input type='text'  name="description" value={itemData.description} onChange={handleChange}></input>
-                </td>
-                <td>
-                    <input className="item-weight" type='number'  name ="weight" value={itemData.weight} onChange={handleChange}></input>
+                </div>
+                <div className="weight">
+                    <input type='number'  name ="weight" value={itemData.weight} onChange={handleChange}></input>
                     <select name="weight_uom" value={itemData.weight_uom} onChange={handleChange}>
                         <option value="oz">oz</option>
                         <option value="lb">lb</option>
                         <option value="g">g</option>
                         <option value="kg">kg</option>
                     </select>
-                </td>
-                <td>
-                    <input className="item-qty" type='number'  name="qty" value={itemData.qty} onChange={handleChange}></input>
-                </td>
-                <td className="item-icon-edit">
+                </div>
+                <div className="qty">
+                    <input  type='number'  name="qty" value={itemData.qty} onChange={handleChange}></input>
+                </div>
+                <div className="editmode">
                     <button className="primary-button small" type='submit' disabled={isValidItem(itemData) ? false : true} onClick={handleSubmit}>Update</button>
                     <button  className="secondary-button small" onClick={
                         function() {
@@ -167,8 +165,8 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                             setItemData(defaultItemData);
                         }
                     }>Cancel</button>
-                </td>
-            </tr>
+                </div>
+            </div>
 
 
 

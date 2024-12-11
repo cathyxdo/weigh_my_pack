@@ -138,18 +138,18 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
                 </h3>
             }
             {category.items.length > 0 && 
-                <table className="item-table">
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Weight</th>
-                        <th>Qty</th>
-                        <th></th>
-                    </tr>
+                <div className="table">
+                    <div className="tablerow tableheader">
+                        <div className="name ">Name</div>
+                        <div className="desc ">Description</div>
+                        <div className="weight ">Weight</div>
+                        <div className="qty">Qty</div>
+                        <div className="editmode"></div>
+                    </div>
                     {category.items.map((item) => (
                     <Item key={item.id} item={item} apiList={apiList} setApiList={setApiList} selectedIndex={selectedIndex} categoryId={category.id} isValidItem={isValidItem} isLoggedIn={isLoggedIn}/>
                     ))}
-                </table>
+                </div>
             
             }
             {showItemForm && 
