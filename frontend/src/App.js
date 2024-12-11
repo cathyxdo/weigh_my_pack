@@ -52,7 +52,7 @@ function App() {
 
           <Menu apiList={apiList} setApiList={setApiList} onSelectList={handleClick} selectedIndex={id} isLoggedIn={isLoggedIn}/>
 
-          <button className="add-item" >
+          <button className="add-item" onClick={()=> setShowAddListModal(true)}>
             <div className="add-icon-wrapper">
               <svg className="plus-outline" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
               <svg className="plus-filled" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
