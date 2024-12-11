@@ -31,18 +31,6 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
       axios.post('https://weigh-my-pack.onrender.com/api/categories/', data)
       .then(result => {
         setApiList(updateList(result.data));
-/*         setApiList(apiList.map((list, index) =>{
-          if(index === selectedIndex) {
-            list.categories = [
-              ...list.categories,
-              result.data
-            ]
-            return list;
-          } else {
-            return list;
-          }
-        })) */
-        
         setNewCategory('');
         setShowCategoryForm(false);
       }).catch(err => {
@@ -54,18 +42,6 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
       const newList = updateList(newCategoryLocal);
       localStorage.setItem("localList", JSON.stringify(newList));
       setApiList(newList);
-/*       setApiList(apiList.map((list, index) =>{
-        if(index === selectedIndex) {
-          list.categories = [
-            ...list.categories,
-            newCategoryLocal
-          ]
-          return list;
-        } else {
-          return list;
-        }
-      })) */
-
       setNewCategory('');
       setShowCategoryForm(false);
     }
@@ -83,21 +59,6 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
         }
       })
     }
-    /*
-    function updateStateNewCategory() {
-      setApiList(apiList.map((list, index) =>{
-        if(index === selectedIndex) {
-          list.categories = [
-            ...list.categories,
-            result.data
-          ]
-          return list;
-        } else {
-          return list;
-        }
-      }))
-    }
-*/
   }
 
  function handleNameChangeSubmit(event) {
@@ -106,15 +67,6 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
     if (isLoggedIn) {
       axios.patch('https://weigh-my-pack.onrender.com/api/lists/' + list.id + '/', {name: listName})
       .then(result => {
-        
-        /*setApiList(apiList.map((list, index) => {
-          if (index === selectedIndex) {
-            list.name = listName;
-            return list;
-          } else {
-            return list;
-          }
-        }))*/
         updateStateNameChange();
         setIsEditing(false);
       }).catch(err => {
@@ -173,7 +125,6 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
               </h2>
             }      
           </header>
-          {/* <ChartSection  selectedIndex={selectedIndex} apiList={apiList}/> */}
           <ChartSection list={apiList[selectedIndex]}/>
 
           {list.categories.map((category) => 
@@ -209,44 +160,6 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
       {!isLoggedIn &&
         <p>FYI all of your lists will be stored on your computer. Log in or sign up for an account to be able to share your list with others! [Future feature]</p>
       }
-      <div className="table">
-        <div className="tablerow tableheader">
-          <div className="name ">Name</div>
-          <div className="desc ">Description</div>
-          <div className="weight ">Weight</div>
-          <div className="qty">Qty</div>
-          <div className="editmode"></div>
-        </div>
-        <div className="tablerow">
-          <div className="name ">Item 1</div>
-          <div className="desc ">Description 1</div>
-          <div className="weight ">10 oz</div>
-          <div className="qty">1</div>
-          <div className="editmode"></div>
-        </div>
-        <div className="tablerow editing">
-          <div className="name "><input value="Item 1 "/></div>
-          <div className="desc ">
-            <input value="Description 1"/>
-          </div>
-          <div className="weight ">
-          <input value="10"/>
-          <select name="weight_uom" value='oz'>
-                        <option value="oz">oz</option>
-                        <option value="lb">lb</option>
-                        <option value="g">g</option>
-                        <option value="kg">kg</option>
-                    </select>
-          </div>
-          <div className="qty">
-          <input type='number' value="1" name="qty"/>
-          </div>
-          <div className="editmode">
-            <button className="primary-button">Update Item</button>
-            <div>Cancel Editing</div>              
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
