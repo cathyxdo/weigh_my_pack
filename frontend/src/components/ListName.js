@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useState } from "react";
+import axiosInstance from "../axios";
 
 export default function ListName({name, id, index, onSelect, apiList, setApiList, selectedIndex, isLoggedIn}) {
     const isActive = (index === selectedIndex) ? 'active' : 'inactive';
@@ -8,7 +7,7 @@ export default function ListName({name, id, index, onSelect, apiList, setApiList
 
         if (isLoggedIn) {
             const url = process.env.REACT_APP_API_BASE_URL + 'lists/' + id + '/';
-            axios.delete(url)
+            axiosInstance.delete(url)
             .then(result => {
                 //setApiList(apiList.filter((list) => list.id !== id ));
                 updateStateDeleteCategory();
