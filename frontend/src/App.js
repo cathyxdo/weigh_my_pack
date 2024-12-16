@@ -25,7 +25,9 @@ function App() {
     axiosInstance.get('lists/')
     .then(result => {
       setApiList(result.data);
-      setCurrentListName(result.data[0].name);
+      if (result.data.length > 0) {
+        setCurrentListName(result.data[0].name);
+      }
       setIsLoggedIn(true);
     }).catch(err => {
       console.log(err);
