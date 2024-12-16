@@ -23,7 +23,7 @@ export default function SignUp() {
         event.preventDefault();
         console.log(userForm);
 
-        axios.post('https://weigh-my-pack.onrender.com/api/user/register/', userForm)
+        axios.post(process.env.REACT_APP_API_BASE_URL + 'user/register/', userForm)
         .then(result => {
             console.log(result);
             navigate('/login');

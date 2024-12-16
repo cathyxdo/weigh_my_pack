@@ -2,6 +2,7 @@ import Category from "./Category";
 import { useState } from 'react';
 import ChartSection from "./ChartSection";
 import axios from "axios";
+import axiosInstance from "../axios";
 import Header from "./Header";
 import { v4 as uuidv4 } from "uuid";
 import ShareLinkPopUp from "./ShareLinkPopUp";
@@ -28,7 +29,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
     const data = {name: newCategory, list: list.id};
   
     if (isLoggedIn) {
-      axios.post('https://weigh-my-pack.onrender.com/api/categories/', data)
+      axios.post(process.env.REACT_APP_API_BASE_URL+'categories/', data)
       .then(result => {
         setApiList(updateList(result.data));
         setNewCategory('');
@@ -65,7 +66,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
     event.preventDefault();
 
     if (isLoggedIn) {
-      axios.patch('https://weigh-my-pack.onrender.com/api/lists/' + list.id + '/', {name: listName})
+      axiosInstance.patch(process.env.REACT_APP_API_BASE_URL + 'lists/' + list.id + '/', {name: listName})
       .then(result => {
         updateStateNameChange();
         setIsEditing(false);

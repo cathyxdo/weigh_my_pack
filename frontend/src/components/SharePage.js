@@ -7,10 +7,8 @@ export default function SharePage() {
     let{ listid } = useParams();
     const [list, setList] = useState();
 
-    console.log('https://weigh-my-pack.onrender.com/api/lists/' + listid);
-
     useEffect(() => {
-        axios.get('https://weigh-my-pack.onrender.com/api/lists/' + listid + '/')
+        axios.get(process.env.REACT_APP_API_BASE_URL + 'lists/' + listid + '/')
         .then(result => {
             console.log(result);
             setList(result.data);

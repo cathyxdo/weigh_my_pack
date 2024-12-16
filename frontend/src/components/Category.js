@@ -30,7 +30,7 @@ export default function Category({category, apiList, setApiList, selectedIndex, 
         event.preventDefault();
 
         if (isLoggedIn) {
-            axios.post('https://weigh-my-pack.onrender.com/api/items/', itemData)
+            axios.post(process.env.REACT_APP_API_BASE_URL+'items/', itemData)
             .then(result => {
                 setApiList(updateList(result.data));
             }).catch(err => {

@@ -30,7 +30,7 @@ export default function Login() {
 			});
         */
        // new code
-       axios.post('https://weigh-my-pack.onrender.com/api/user/token/', loginForm)
+       axios.post(process.env.REACT_APP_API_BASE_URL+ 'user/token/', loginForm)
        .then((result) => {
                localStorage.setItem('access_token', result.data.access);
                localStorage.setItem('refresh_token', result.data.refresh);

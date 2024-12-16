@@ -5,7 +5,7 @@ export default function ModalDeleteCategory({categoryId, selectedIndex, setDelet
         event.preventDefault();
         
         if (isLoggedIn) {
-            axios.delete('https://weigh-my-pack.onrender.com/api/categories/' + categoryId + '/')
+            axios.delete(process.env.REACT_APP_API_BASE_URL + 'categories/' + categoryId + '/')
             .then(result => {
                 /*
                 setApiList(apiList.map((list, index) => {

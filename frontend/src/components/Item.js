@@ -24,7 +24,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         event.preventDefault();
 
         if (isLoggedIn) {
-            axios.patch('https://weigh-my-pack.onrender.com/api/items/' + item.id + '/', itemData)
+            axios.patch(process.env.REACT_APP_API_BASE_URL+'items/' + item.id + '/', itemData)
             .then(result => {
                 updateStateEditItem();
                 setEditing(false);

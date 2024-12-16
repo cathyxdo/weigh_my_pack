@@ -7,7 +7,7 @@ export default function ListName({name, id, index, onSelect, apiList, setApiList
         event.preventDefault();
 
         if (isLoggedIn) {
-            const url = 'https://weigh-my-pack.onrender.com/api/lists/' + id + '/';
+            const url = process.env.REACT_APP_API_BASE_URL + 'lists/' + id + '/';
             axios.delete(url)
             .then(result => {
                 //setApiList(apiList.filter((list) => list.id !== id ));
