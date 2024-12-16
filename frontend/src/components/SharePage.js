@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export default function SharePage() {
     let{ listid } = useParams();
     const [list, setList] = useState();
+    console.log(`list_id:${listid}`);
 
     useEffect(() => {
         axios.get(process.env.REACT_APP_API_BASE_URL + 'lists/' + listid + '/')
