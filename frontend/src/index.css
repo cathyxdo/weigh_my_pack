@@ -727,7 +727,7 @@ td {
 .weight input {
     margin-right: 4px;
 }
-.loginform, .signupform, .forgotpasswordform {
+.loginform, .signupform, .forgotpasswordform, .changepasswordform {
     border: solid 1px var(--color-font-black);
     border-radius: 10px;
     display: flex;
@@ -738,7 +738,7 @@ td {
     padding: 30px 0px 50px 0px;
     margin-top:60px;
 }
-.login, .signup, .forgotpassword {
+.login, .signup, .forgotpassword, .changepassword {
     width: 100%;
     display: flex;
     flex-direction: column;

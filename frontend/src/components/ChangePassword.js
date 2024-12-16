@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axiosInstance from "../axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ChangePassword() {
     const [passwords, setPasswords] = useState({
@@ -26,8 +27,8 @@ export default function ChangePassword() {
     }
 
     return (
-        <div className="ChangePasswordForm">
-            <form action="" className="form">
+        <div className="changepassword">
+            <form action="" className="changepasswordform">
                 <h1 class="title">Change Password</h1>
     
                 <div className="inputContainer">
@@ -44,7 +45,9 @@ export default function ChangePassword() {
 
                 <input type="submit" className="primary-button" value="Change Password" onClick={handleSubmit} />
 
-
+                <div>
+                    <Link to="/">Go Back</Link>
+                </div>
             </form>
         </div>
     )
