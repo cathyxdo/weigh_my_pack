@@ -42,7 +42,7 @@ export default function SharePage() {
                                             }
                                         </td>
                                         <td>{item.description}</td>
-                                        <td>{item.weight}</td>
+                                        <td>{item.weight} {item.weight_uom}</td>
                                         <td>{item.qty}</td>
                                     </tr>
                                 ))}
