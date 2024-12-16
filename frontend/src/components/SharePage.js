@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ChartSection from "./ChartSection";
+import { Link } from "react-router-dom";
 
 export default function SharePage() {
     let{ listid } = useParams();
@@ -51,6 +52,11 @@ export default function SharePage() {
                     ))}
                 </>
             }
+            <div className="sharePageFooter">
+                <p>Create your own backpacking list at</p>
+                <Link to="/"><h4>Weigh My Pack 🎒</h4></Link>
+
+            </div>
         </div>
     )
 }

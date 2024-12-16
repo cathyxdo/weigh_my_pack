@@ -576,7 +576,9 @@ thead th {
 }
 
 .shareView {
-    padding: 20px 80px;
+    padding-left: 80px;
+    padding-right: 80px;
+
 }
 .tableCategoryName {
     font-size: 1.2em;
@@ -769,4 +771,25 @@ form a:hover {
 }
 .categorySection {
     margin-bottom: 20px;
+}
+
+.item-table {
+    margin-top: 20px;
+}
+.shareView {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    min-height: 100vh;      /* Ensure the container fills the viewport height */
+}
+.sharePageFooter {
+    margin-top: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+.sharePageFooter h4 {
+    margin: 0;
 }
