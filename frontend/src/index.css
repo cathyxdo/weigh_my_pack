@@ -194,19 +194,17 @@ div {
     left: 30px;
 }
 .showListsButton {
-    display: flex;
-    align-items: center;
     color: var(--color-font-black)
     }
 
 .showListsButton {
-    display: relative;
+    position: fixed;
 }
-.showListsButton > svg {
+ .showListsButton > svg {
     position: absolute;
     left: 0;
     top: 0;
-}
+ } 
 .showListsButton:hover > .hamburgerIcon {
     visibility: hidden;
 }
@@ -760,6 +758,7 @@ td {
 
 a {
     text-decoration: none;
+    color: black;
 }
 a:visited {
     color: inherit; /* Same color as unvisited links */
