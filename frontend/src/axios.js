@@ -1,6 +1,6 @@
 // Taken from https://github.com/veryacademy/YT-Django-DRF-Simple-Blog-Series-JWT-Part-3/blob/master/react/blogapi/src/axios.js
 import axios from 'axios';
-const baseURL = 'https://weigh-my-pack.onrender.com/api/';
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 const axiosInstance = axios.create({
     baseURL: baseURL,

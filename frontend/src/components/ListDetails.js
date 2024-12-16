@@ -16,7 +16,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
 
   function handleCopyLink(event) {
     event.preventDefault();
-    navigator.clipboard.writeText("https://weigh-my-pack-react.onrender.com/#/"+ list.id);
+    navigator.clipboard.writeText(process.env.REACT_APP_SHARE_PAGE_BASE_URL + list.id);
     setIsPopupVisible(true);
     setTimeout(() => {
       setIsPopupVisible(false);
