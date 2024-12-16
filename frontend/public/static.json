@@ -1,7 +1,0 @@
-{
-    "root": "index.html",
-    "routes": {
-      "/**": "index.html"
-    }
-  }
-  
