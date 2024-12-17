@@ -8,7 +8,7 @@ import ResetPassword from './components/ResetPassword';
 import App from './App';
 import PageNotFound from './components/PageNotFound';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from './components/SignUp';
 import SharePage from './components/SharePage';
 
