@@ -159,7 +159,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
       )}
 
       {!isLoggedIn &&
-        <p>FYI all of your lists will be stored on your computer. Log in or sign up for an account to be able to share your list with others! [Future feature]</p>
+        <p>FYI all of your lists will be stored on your computer. Log in or sign up for an account to be able to share your list with others!</p>
       }
     </div>
   )
