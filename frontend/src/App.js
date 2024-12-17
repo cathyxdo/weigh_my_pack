@@ -5,14 +5,15 @@ import ModalNewList from './components/ModalNewList.js';
 import ModalDeleteCategory from './components/ModalDeleteCategory.js';
 import axiosInstance from './axios.js';
 function App() {
+  let localList = localStorage.getItem("localList") ? JSON.parse(localStorage.getItem("localList")) : [];
+
   const [id, setId] = useState(0);    // show first list by default
-  const [apiList, setApiList] = useState([]);
+  const [apiList, setApiList] = useState(localList); // Default to local list
   const [currentListName, setCurrentListName] = useState('');
   const [showAddListModal, setShowAddListModal] = useState(false);
   const [deleteCategoryModal, setDeleteCategoryModal] = useState({show: false, categoryId: ''});
   const [showSideBar, setShowSideBar] = useState(true);
 
-  let localList = localStorage.getItem("localList") ? JSON.parse(localStorage.getItem("localList")) : [];
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
