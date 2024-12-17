@@ -793,3 +793,14 @@ form a:hover {
 .sharePageFooter h4 {
     margin: 0;
 }
+.fyiMessage {
+    width: fit-content;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px var(--color-dark-grey);
+    border-radius: 4px;
+    background-color: var(--color-light-grey);
+}

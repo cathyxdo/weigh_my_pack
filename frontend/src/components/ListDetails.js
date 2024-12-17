@@ -94,6 +94,9 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
   return (
     <div className={"listDetails " + (showSideBar ? 'showBar' : 'hideBar' )}>
       <Header isLoggedIn={isLoggedIn}/>
+      {!isLoggedIn &&
+        <div className="fyiMessage">FYI all of your lists will be stored on your computer. Log in or sign up for an account to be able to share your list with others!</div>
+      }
       {!list && 
         <div>
           <h2>No lists created yet!</h2>
@@ -158,9 +161,6 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
         </div>
       )}
 
-      {!isLoggedIn &&
-        <p>FYI all of your lists will be stored on your computer. Log in or sign up for an account to be able to share your list with others!</p>
-      }
     </div>
   )
 }
