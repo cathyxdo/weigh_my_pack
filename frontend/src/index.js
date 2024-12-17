@@ -24,7 +24,7 @@ root.render(
           <Route path="/changepassword" element={<ChangePassword />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:uidb64/:token" element={<ResetPassword />} />
-          <Route path="/s/:listid" element={<SharePage />} />
+          <Route path="/:listid" element={<SharePage />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/404" element={<PageNotFound />} />
       </Routes>
