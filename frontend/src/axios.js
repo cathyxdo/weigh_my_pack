@@ -1,4 +1,5 @@
-// Taken from https://github.com/veryacademy/YT-Django-DRF-Simple-Blog-Series-JWT-Part-3/blob/master/react/blogapi/src/axios.js
+// Most code snippets come from https://github.com/veryacademy/YT-Django-DRF-Simple-Blog-Series-JWT-Part-3/blob/master/react/blogapi/src/axios.js
+// Used for api calls that require auth
 import axios from 'axios';
 const baseURL = process.env.REACT_APP_API_BASE_URL;
 
