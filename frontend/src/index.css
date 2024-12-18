@@ -98,12 +98,11 @@ table {
 
 th {
     text-align: left;
-    font-size: 14px;
+    font-size: x-small;
 }
 td {
-    padding: 3px 0;
     border-top: 1px solid #ddd ;
-    font-size: 14px;
+    font-size: small;
     height: 30px;
 }
 .shareView td {
@@ -398,7 +397,7 @@ div {
     flex-direction: column;
     gap: 8px;
     width: fit-content;
-    font-size: 14px;
+    font-size: small;
 }
 .item-form div {
     display: flex;
@@ -557,7 +556,7 @@ tfoot td {
 
 thead th {
     font-weight: 700;
-    font-size: 14px;
+    font-size: small;
 }
 
 .item-icon > .edit:hover {
@@ -640,7 +639,6 @@ td {
     flex-direction: column;
     width: 100%;
     font-size: small;
-
   }
   
   .tablerow {
@@ -662,8 +660,7 @@ td {
   }
   .tablerow > div {
     padding-right: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+
   }
   .tableheader {
     font-weight: bold;
@@ -692,7 +689,7 @@ td {
     display: flex;
     align-items: center;
     flex: 1; /* Takes 1 flex space */
-    padding: 4px; /* Optional: Adds spacing for readability */
+    padding: 1px; 
   }
 
   .desc {
@@ -794,6 +791,7 @@ form a:hover {
     margin: 0;
 }
 .fyiMessage {
+    font-size:small;
     width: fit-content;
     margin-top: 20px;
     margin-bottom: 40px;
