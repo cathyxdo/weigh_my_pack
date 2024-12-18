@@ -170,7 +170,7 @@ div {
     padding: 20px 30px;
     background: var(--color-light-grey);
     transition: width 5s;
-    z-index:20;
+    /*z-index:20;*/
 }
 .sideBarHeader {
     display: flex;

@@ -4,6 +4,7 @@ import ListDetails from './components/ListDetails.js';
 import ModalNewList from './components/ModalNewList.js';
 import ModalDeleteCategory from './components/ModalDeleteCategory.js';
 import axiosInstance from './axios.js';
+
 function App() {
   let localList = localStorage.getItem("localList") ? JSON.parse(localStorage.getItem("localList")) : [];
 
@@ -13,8 +14,6 @@ function App() {
   const [showAddListModal, setShowAddListModal] = useState(false);
   const [deleteCategoryModal, setDeleteCategoryModal] = useState({show: false, categoryId: ''});
   const [showSideBar, setShowSideBar] = useState(true);
-
-  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleClick(index) {
@@ -41,7 +40,6 @@ function App() {
   }, []);
   
   return (
-    
     <div className="content">
         <div className={"sidebar " + (showSideBar ? 'showBar' : 'hideBar' ) }>
           <span className="sideBarHeader">
