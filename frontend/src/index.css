@@ -170,7 +170,7 @@ div {
     padding: 20px 30px;
     background: var(--color-light-grey);
     transition: width 5s;
-    /*z-index:20;*/
+    z-index:10;
 }
 .sideBarHeader {
     display: flex;
@@ -442,6 +442,7 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index:999;
 }
 .modal-new-list {
     background-color: white;
@@ -454,6 +455,7 @@ div {
     border-radius: 10px;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.16);
     padding: 20px;
+    z-index:1000;
 }
 .modal-new-list h3 {
     margin: 0;
@@ -493,7 +495,7 @@ div {
     border-radius: 10px;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.16);
     padding: 20px;
-
+    z-index:1000;
 
 }
 .modal-delete h3 {

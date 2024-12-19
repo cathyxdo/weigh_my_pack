@@ -35,8 +35,11 @@ function App() {
       console.log(localList);
       localStorage.setItem("localList", JSON.stringify(localList));
       setApiList(localList);
-      setCurrentListName(localList[0].name);
-    });
+      if (localList.length > 0) {
+        setCurrentListName(localList[0].name);
+      } else {
+        setCurrentListName(''); // Fallback to empty string
+      }    });
   }, []);
   
   return (
