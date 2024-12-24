@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import Menu from "./components/Menu";
 import ListDetails from './components/ListDetails.js';
 import ModalNewList from './components/ModalNewList.js';
@@ -41,6 +41,33 @@ function App() {
         setCurrentListName(''); // Fallback to empty string
       }    });
   }, []);
+
+  const handleModalClickAway = (event, modalRef, closeModal) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      closeModal();
+    }
+  };
+
+  const modalNewListRef = useRef(null);
+  const modalDeleteCategoryRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showAddListModal) {
+        handleModalClickAway(event, modalNewListRef, () => setShowAddListModal(false));
+      }
+      if (deleteCategoryModal.show) {
+        handleModalClickAway(event, modalDeleteCategoryRef, () =>
+          setDeleteCategoryModal({ show: false, categoryId: '' })
+        );
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showAddListModal, deleteCategoryModal]);
   
   return (
     <div className="content">
@@ -83,17 +110,24 @@ function App() {
         {apiList && (
           <ListDetails showSideBar={showSideBar} apiList={apiList} selectedIndex={id} listName={currentListName} handleNameChange={setCurrentListName} setApiList={setApiList} setDeleteCategoryModal={setDeleteCategoryModal} isLoggedIn={isLoggedIn}/>
         )}  
-        {(showAddListModal || deleteCategoryModal.show) &&
-          <div className="modal-background">
-            {showAddListModal && 
-              <ModalNewList showModal={setShowAddListModal} apiList={apiList} setApiList={setApiList} isLoggedIn={isLoggedIn}/> 
-            }
 
-            {deleteCategoryModal.show && 
-              <ModalDeleteCategory selectedIndex={id} categoryId={deleteCategoryModal.categoryId} setDeleteCategoryModal={setDeleteCategoryModal} apiList={apiList} setApiList={setApiList} isLoggedIn={isLoggedIn}/>
-            }
+        {showAddListModal && 
+          <div className="modal-background">
+            <div ref={modalNewListRef}>
+
+              <ModalNewList showModal={setShowAddListModal} apiList={apiList} setApiList={setApiList} isLoggedIn={isLoggedIn}/> 
+            </div>
           </div>
         }
+        {deleteCategoryModal.show && 
+          <div className="modal-background">
+            <div ref={modalDeleteCategoryRef}>
+
+              <ModalDeleteCategory selectedIndex={id} categoryId={deleteCategoryModal.categoryId} setDeleteCategoryModal={setDeleteCategoryModal} apiList={apiList} setApiList={setApiList} isLoggedIn={isLoggedIn}/>
+          </div>
+          </div>
+        }
+        
     </div>
   );
 }
