@@ -140,7 +140,7 @@ export default function ListDetails({apiList, listName, selectedIndex, handleNam
                 <br></br>
                 <br></br>
                 <input className="edit-input" value={newCategory} type="text" placeholder="New category" onChange={(e) => setNewCategory(e.target.value)}/>
-                <button type="submit" className="primary-button" >Add Category</button>
+                <button type="submit" className="primary-button" >Add</button>
                 <button className="secondary-button" onClick={function () { 
                   setShowCategoryForm(false);
                   setNewCategory('');
