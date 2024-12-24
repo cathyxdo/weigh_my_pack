@@ -804,3 +804,8 @@ form a:hover {
     border-radius: 4px;
     background-color: var(--color-light-grey);
 }
+
+.collapseIcon {
+    color: black; /* Ensure the button's color is consistent */
+  }
+  
