@@ -112,8 +112,11 @@ export default function ChartSection({list}) {
                 </table>
                 
                 <div className="donut-chart">
+                {data.length > 0 && ( 
                     <DoughnutChart chartData={chartData} />
+                )}
                 </div>
+
             </div>
     )
 }
