@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Item({item, apiList, setApiList, selectedIndex, categoryId, isValidItem, isLoggedIn}) {
     const [editing, setEditing] = useState(false);
+    const modalRef = useRef(null); // Reference for the modal-wrapper
+
     const defaultItemData = {
         name: item.name,
         description: item.description ? item.description : '',
@@ -12,7 +14,6 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         link: item.link ? item.link : ''    
     }
     const [itemData, setItemData] = useState(defaultItemData);
-    const [showItemIcons, setShowItemIcons] = useState(false);
     function handleChange(event) {
         setItemData({
             ...itemData,
@@ -107,6 +108,23 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         setEditing(false);
         setItemData(defaultItemData);
       }
+
+      useEffect(() => {
+        function handleClickOutside(event) {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                closeModal();
+            }
+        }
+
+        if (editing) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [editing]);
+
     return (
         <>
             <div className="tablerow">
@@ -137,7 +155,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
 
             {editing && (
                 <div className="modal-background">
-                    <div className="modal-wrapper">
+                    <div className="modal-wrapper" ref={modalRef}>
                         <div className="modal" onClick={(e) => e.stopPropagation()}>
                             <div className="modal-header">
                                 <h3>Edit Item</h3>
