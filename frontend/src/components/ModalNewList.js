@@ -39,7 +39,7 @@ export default function ModalNewList({showModal, setApiList, apiList, isLoggedIn
         }
     }
     return (
-        <div className="modal-new-list">
+        <div className="modal">
             <div className="modal-header">
                 <h3>Add List</h3>
             </div>

@@ -103,11 +103,12 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
         }
 
     }
-
+    function closeModal() {
+        setEditing(false);
+        setItemData(defaultItemData);
+      }
     return (
         <>
-        {editing === false &&
-
             <div className="tablerow">
                 <div className="name">
                     {!item.link && 
@@ -134,9 +135,59 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
                 </div>
             </div>
 
+            {editing && (
+                <div className="modal-background">
+                    <div className="modal-wrapper">
+                        <div className="modal" onClick={(e) => e.stopPropagation()}>
+                            <div className="modal-header">
+                                <h3>Edit Item</h3>
+                            </div>
+                            <form className="modal-content edit-content">
+                                <div>
+                                    <label>Name:</label>
+                                    <input type="text" name="name" value={itemData.name} onChange={handleChange} />
+                                </div>
+                                <div>
+                                    <label>Description:</label>
+                                    <input type="text" name="description" value={itemData.description} onChange={handleChange} />
+                                </div>
+                                <div>
+                                    <label>Link:</label>
+                                    <input type="url" name="link" value={itemData.link} onChange={handleChange} />
+                                </div>
+                                <div>
+                                    <label>Weight:</label>
+                                    <input type="number" name="weight" value={itemData.weight} onChange={handleChange} />
+                                    <div>
+                                        <select name="weight_uom" className="uom-dropdown" value={itemData.weight_uom} onChange={handleChange}>
+                                            <option value="oz">oz</option>
+                                            <option value="lb">lb</option>
+                                            <option value="g">g</option>
+                                            <option value="kg">kg</option>
+                                        </select>
+                                    </div> 
+                                </div>
+                                <div>
+                                    <label>Quantity:</label>
+                                    <input type="number" name="qty" value={itemData.qty} onChange={handleChange} />
+                                </div>
 
-        }
-        {editing === true &&
+                            </form>
+                            <div className="modal-footer">
+                                <button className="primary-button" type='submit' disabled={isValidItem(itemData) ? false : true} onClick={handleSubmit}>
+                                Save
+                                </button>
+                                <button className="secondary-button" type="button" onClick={closeModal}>
+                                Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        
+
+{/*         {editing === true &&
 
             <div className="tablerow editing" >
                 <div className="name">
@@ -175,7 +226,7 @@ export default function Item({item, apiList, setApiList, selectedIndex, category
 
 
 
-        }
+        } */}
         </>
         
     )
