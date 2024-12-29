@@ -112,9 +112,9 @@ function App() {
 
         {showAddListModal && 
           <div className="modal-background">
-            <div ref={modalNewListRef}>
-
+            <div className="modal-wrapper" ref={modalNewListRef}>
               <ModalNewList showModal={setShowAddListModal} apiList={apiList} setApiList={setApiList} isLoggedIn={isLoggedIn}/> 
+
             </div>
           </div>
         }

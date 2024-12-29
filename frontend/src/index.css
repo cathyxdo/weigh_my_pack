@@ -438,31 +438,39 @@ div {
     text-align: center;
 }
 
-.modal-background {
+ 
+  /* Modal background */
+  .modal-background {
     position: fixed;
-    top:0;
-    right:0;
+    top: 0;
     left: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index:999;
-}
-.modal-new-list {
+    z-index: 999;
+  }
+  
+  /* Modal content */
+  .modal-new-list {
+    background: white;
+    /*padding: 20px;*/
+    position: relative;
+
     background-color: white;
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 400px;
     height: 300px;
-    justify-content: center;
     border-radius: 10px;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,.16);
     padding: 20px;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.16);
     z-index:1000;
-}
+  }
+
 .modal-new-list h3 {
     margin: 0;
 }
@@ -479,15 +487,31 @@ div {
     gap: 10px;
     flex-direction: column;
 }
-.modal-new-list #notes {
-    height: 100px;
-}
 .modal-new-list .modal-footer {
     display:flex;
     gap: 10px;
-    justify-content: right;
+    justify-content: center;
 
-}
+}  
+  /* Full-screen modal for smaller screens */
+  @media (max-width: 768px) {
+    .modal-wrapper {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: auto;
+    }
+    .modal-new-list {
+        width:100%;
+        height:100%;
+        border-radius: 0;
+        padding: 0;
+    }
+    .modal-new-list > * {
+        margin: 10px;
+    }
+  }
+  
 
 .modal-delete {
     background-color: white;
@@ -814,4 +838,4 @@ form a:hover {
 .collapseIcon {
     color: black; /* Ensure the button's color is consistent */
   }
-  
+ 
