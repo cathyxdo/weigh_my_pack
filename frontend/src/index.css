@@ -705,7 +705,9 @@ td {
     flex: 1; /* Takes 1 flex space */
     padding: 1px; 
   }
-
+  .editmode {
+    justify-content: space-between;
+  }
   .desc {
     display: flex;
     flex-direction: column;
