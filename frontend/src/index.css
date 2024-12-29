@@ -15,6 +15,10 @@
     --color-font-black: #2d2d2d;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .ball {
 width: 30px;
 height: 30px;
@@ -403,6 +407,7 @@ div {
     flex-direction: column;
     gap: 8px;
     width: fit-content;
+    max-width: 100%;
     font-size: small;
 }
 .item-form div {
@@ -637,7 +642,6 @@ td {
     .chart-details {
         flex-direction: column-reverse;
     }
-
   }
 
 @media screen and (min-width: 768px) {
@@ -645,11 +649,12 @@ td {
         display: none
     }
 }
-@media screen and (max-width: 768px) {
-    .chart-details {
-        flex-direction: column-reverse;
+@media screen and (max-width: 576px) {
+    .item-form .quantity{
+        flex-direction: column;
     }
 }
+
 
 .donut-chart {
     height: 300px;
