@@ -120,7 +120,7 @@ function App() {
         }
         {deleteCategoryModal.show && 
           <div className="modal-background">
-            <div ref={modalDeleteCategoryRef}>
+            <div className="modal-wrapper" ref={modalDeleteCategoryRef}>
 
               <ModalDeleteCategory selectedIndex={id} categoryId={deleteCategoryModal.categoryId} setDeleteCategoryModal={setDeleteCategoryModal} apiList={apiList} setApiList={setApiList} isLoggedIn={isLoggedIn}/>
           </div>

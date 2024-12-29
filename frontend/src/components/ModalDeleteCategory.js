@@ -45,7 +45,7 @@ export default function ModalDeleteCategory({categoryId, selectedIndex, setDelet
         }
     }
     return (
-        <div class="modal-delete">
+        <div class="modal category-delete">
             <div class="modal-header">
                 <h3>Are you sure you want to delete this category?</h3>
             </div>

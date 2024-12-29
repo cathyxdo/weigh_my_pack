@@ -1,6 +1,6 @@
 :root {
     --color-orange: #f57e3e;
-    --color-light-orange: #ffb085;
+    --color-light-orange: #f8d0a3;
     --color-dark-orange: #d15512;
     --color-light-grey: rgb(247, 247, 247);
     --color-light-grey-2: rgb(240, 240, 240);
@@ -154,7 +154,7 @@ a:visited {
 }
 
 .active {
-    background-color: var(--color-light-blue-2);
+    background-color: var(--color-light-orange);
     border-radius: 4px;
  
 }
@@ -170,9 +170,9 @@ div {
     top: 0;
     left: 0;
     height: 100%;
-    width: 250px;
+    width: 320px;
     padding: 20px 30px;
-    background: var(--color-light-grey);
+    background: var(--color-light-grey-2);
     transition: width 5s;
     z-index:10;
 }
@@ -507,6 +507,11 @@ div {
 .uom-dropdown {
     padding: 10px 12px;
 }
+
+.category-delete > div, .category-delete > h3 {
+    align-items: center;
+    text-align: center;
+}
   /* Full-screen modal for smaller screens */
   @media (max-width: 768px) {
     .modal-wrapper {
@@ -526,32 +531,6 @@ div {
     }
   }
   
-
-.modal-delete {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 400px;
-    height: 150px;
-    justify-content: center;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,.16);
-    padding: 20px;
-    z-index:1000;
-
-}
-.modal-delete h3 {
-    margin: 0;
-    text-align: center;
-}
-.modal-delete .modal-footer {
-    display:flex;
-    gap: 10px;
-    justify-content: center;
-}
-
 .chart-table {
     text-align: left;
 }
@@ -578,7 +557,7 @@ div {
     visibility: hidden;
 }
 .nav-list:hover {
-    background-color: var(--color-light-grey-2);
+    background-color: var(--color-light-orange);
     border-radius: 4px;
 }
 .nav-list:hover svg {
@@ -822,6 +801,10 @@ form a:hover {
 .collapseIcon {
     color: black; /* Ensure the button's color is consistent */
   }
+.collapseIcon > svg:hover {
+    background-color: darkgrey;
+    border-radius: 4px;
+}
  
   @media screen and (max-width: 768px) {
 
