@@ -1,7 +1,5 @@
-# taken from https://github.com/veryacademy/YT-Django-DRF-Simple-Blog-Series-JWT-Part-3/blob/master/django/users/serializers.py
 from rest_framework import serializers
 from users.models import NewUser
-
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
