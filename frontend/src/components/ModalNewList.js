@@ -47,9 +47,9 @@ export default function ModalNewList({showModal, setApiList, apiList, isLoggedIn
                 
                     <label htmlFor="name">Name</label>                    
                     <input type="text" name="name" value={listData.name} onChange={handleChange}/>
-                    <label htmlFor="notes">Notes</label>
+{/*                     <label htmlFor="notes">Notes</label>
                     <textarea id="notes" maxLength="300" type="text" name="notes" value={listData.notes} onChange={handleChange}></textarea>
-                
+                 */}
 
             </form>
 
