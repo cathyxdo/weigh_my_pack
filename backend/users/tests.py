@@ -15,8 +15,6 @@ class UserTests(APITestCase):
         url = reverse('users:create_user')
         data = {
             'email': 'test@test.com', 
-            'user_name': 'testuser',
-            'first_name': 'test',
             'password': 'password'
             }
         response = self.client.post(url, data, format='json')
@@ -27,8 +25,6 @@ class JWTTokenAPITestCase(APITestCase):
         # Create a user for testing
         self.user = NewUser.objects.create_user(
             email='test@test.com',
-            user_name='testuser',
-            first_name='testuser',
             password='testpassword'
         )
 

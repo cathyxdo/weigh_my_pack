@@ -5,14 +5,11 @@ from .models import List, Category, Item
 from .serializers import ListSerializer, CategorySerializer, ItemSerializer
 from users.models import NewUser
 
-
 class ListAPITestCase(APITestCase):
 
     def setUp(self):
         self.user = NewUser.objects.create_user(
             email='test@test.com',
-            user_name='testuser',
-            first_name='testuser',
             password='testpassword'
         )
         self.client.force_authenticate(user=self.user)
@@ -25,24 +22,24 @@ class ListAPITestCase(APITestCase):
 
 
     def test_list_creation(self):
-        url = reverse('lists')
+        url = reverse('backpack_list:lists')
         serialized_data = ListSerializer(self.list).data
         response = self.client.post(url, serialized_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_list_retrieval(self):
-        url = reverse('list_modify', args=[self.list.id])
+        url = reverse('backpack_list:list_modify', args=[self.list.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_category_creation(self):
-        url = reverse('create_category')
+        url = reverse('backpack_list:create_category')
         serialized_data = CategorySerializer(self.category).data
         response = self.client.post(url, serialized_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_item_creation(self):
-        url = reverse('create_item')
+        url = reverse('backpack_list:create_item')
         serialized_data = ItemSerializer(self.item).data
         response = self.client.post(url, serialized_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
