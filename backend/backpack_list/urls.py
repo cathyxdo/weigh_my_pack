@@ -9,7 +9,7 @@ from .views import (
     UserListView
 )
 
-app_name = 'backpack_list'  # Optional but recommended for namespacing
+app_name = 'backpack_list'  
 
 urlpatterns = [
     path('lists/', ListList.as_view(), name='lists'),
