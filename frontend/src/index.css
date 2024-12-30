@@ -62,7 +62,7 @@ button {
 }
 .category-line {
     background: var(--color-dark-grey);
-    height: 1px;
+    height: 2px;
     content: "";
 }
 .add-category:hover > .category-line {
