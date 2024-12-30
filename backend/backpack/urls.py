@@ -16,16 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from backpack_list.views import ListList, ModifyCategory, ModifyItem, CreateCategory, CreateItem, SingleList, UserListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("api/lists/", ListList.as_view(), name='lists'),
-    path("api/users/lists", UserListView.as_view()),
-    path("api/lists/<int:pk>/", SingleList.as_view(), name='list_modify'),
-    path("api/categories/<int:pk>/", ModifyCategory.as_view(), name='category_modify'),
-    path("api/categories/", CreateCategory.as_view(), name='create_category'),
-    path("api/items/<int:pk>/", ModifyItem.as_view(), name='item_modify'),
-    path("api/items/", CreateItem.as_view(), name='create_item'),
+    path('api/', include('backpack_list.urls', namespace='backpack_list')),
     path('api/user/', include('users.urls', namespace='users')),
 ]
