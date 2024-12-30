@@ -839,7 +839,12 @@ form a:hover {
         padding-left: 10px;
         padding-right:10px;
     }
-
+    .sharePageFooter  {
+        font-size: 12px;
+    }
+    .donut-chart {
+        height: 200px;
+    }
   }
 
 @media screen and (min-width: 768px) {
