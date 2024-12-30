@@ -34,7 +34,7 @@ export default function SignUp() {
             <Link to="/"><h2>Weigh My Pack 🎒</h2></Link>
 
             <form action="" className="signupform">
-                <h1 class="title">Sign up</h1>
+                <h1 className="title">Sign up</h1>
     
                 <div className="inputContainer">
                     <label for="" className="label">Email</label>
