@@ -3,56 +3,6 @@ import { useState } from "react";
 import generateChartData from "./utils/generateChartData";
 
 export default function ChartSection({list}) {
-/*     function weightConversion(weight, from_uom, to_uom) {
-        function convertToG(weight, from_uom) {
-            if (from_uom === 'g') {
-                return weight*1000;
-            } if (from_uom === 'kg') {
-                return weight * 1000000;
-            } if (from_uom === 'oz') {
-                return weight * 28349.5;
-            } if (from_uom === 'lb') {
-                return weight * 453592;
-            }
-        }
-
-        function convertGToUom(weight_g, to_uom) {
-            if (to_uom === 'g') {
-                return Math.round(weight_g)/1000;
-            } if (to_uom === 'kg') {
-                //return Math.round((weight_g * 1000 / 100000)) / 1000;
-                return (weight_g / 100000).toFixed(2);
-            } if (to_uom === 'oz') {
-                return Math.round((weight_g * 1000 / 28349.5)) / 1000;
-            } if (to_uom === 'lb') {
-                return Math.round((weight_g * 1000 / 453592)) / 1000;
-            }
-        }
-
-        return convertGToUom(convertToG(weight, from_uom), to_uom);
-    }
-
-    const categories = apiList[selectedIndex].categories;
-    const categorySubtotals = [];
-    let total = 0;
-    const [currentWeightUom, setCurrentWeighUom] = useState('lb');
-
-    const nameLabels = [];
-    const data = [];
-    for (const index in categories) {
-        const name = categories[index].name;
-        let subtotalWeight = 0;
-        nameLabels.push(name);
-
-        for (const itemIndex in categories[index].items) {
-            subtotalWeight = subtotalWeight + weightConversion(categories[index].items[itemIndex].weight, categories[index].items[itemIndex].weight_uom, currentWeightUom) * categories[index].items[itemIndex].qty;
-            
-        }
-        total = total+subtotalWeight;
-        categorySubtotals.push({name: name, subtotalWeight: subtotalWeight});
-        data.push(subtotalWeight);
-    } */
-
     const [currentWeightUom, setCurrentWeighUom] = useState('lb');
     const {data, chartLabels, total, categorySubtotals} = generateChartData(list, currentWeightUom);
 
@@ -72,7 +22,6 @@ export default function ChartSection({list}) {
         setCurrentWeighUom(event.target.value);
     }
 
-
     return (
         
             <div className="chart-details"> 
@@ -86,11 +35,11 @@ export default function ChartSection({list}) {
                     
                     <tbody>
                         {categorySubtotals.map((category) => 
-                        <tr>
-                            <td>{category.name}</td>
-                            <td>{parseFloat(category.subtotalWeight).toFixed(2) + ' ' + currentWeightUom}</td>
-                        </tr>
-                        )
+                            <tr>
+                                <td>{category.name}</td>
+                                <td>{parseFloat(category.subtotalWeight).toFixed(2) + ' ' + currentWeightUom}</td>
+                            </tr>
+                            )
                         }
                     </tbody>
 
