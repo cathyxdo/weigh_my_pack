@@ -18,18 +18,6 @@ export default function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        /* old code below
-        axiosInstance.post(`token/`, loginForm)
-		.then((result) => {
-				localStorage.setItem('access_token', result.data.access);
-				localStorage.setItem('refresh_token', result.data.refresh);
-				axiosInstance.defaults.headers['Authorization'] =
-					'JWT ' + localStorage.getItem('access_token');
-                console.log(result);
-                navigate('/');
-			});
-        */
-       // new code
        axios.post(process.env.REACT_APP_API_BASE_URL+ 'user/token/', loginForm)
        .then((result) => {
                localStorage.setItem('access_token', result.data.access);

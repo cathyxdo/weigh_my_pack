@@ -7,16 +7,6 @@ export default function ModalDeleteCategory({categoryId, selectedIndex, setDelet
         if (isLoggedIn) {
             axios.delete(process.env.REACT_APP_API_BASE_URL + 'categories/' + categoryId + '/')
             .then(result => {
-                /*
-                setApiList(apiList.map((list, index) => {
-                    if(index === selectedIndex) {
-                        list.categories = list.categories.filter((c) => c.id !== categoryId);
-                        return list;
-                    } else {
-                        return list;
-                    }
-                }))
-                */
                 updateStateDeleteCategory();
                 setDeleteCategoryModal({
                     'show': false,
