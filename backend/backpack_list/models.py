@@ -1,8 +1,15 @@
 from django.db import models
 from django.conf import settings
+import shortuuid
 
 # Create your models here.
 class List(models.Model):
+    id = models.CharField(
+        primary_key=True, 
+        max_length=22,  
+        default=shortuuid.uuid, 
+        editable=False
+    )    
     name = models.CharField(max_length=100)
     notes = models.CharField(max_length=300, null=True, blank=True)
     creator = models.ForeignKey(
