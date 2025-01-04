@@ -1,12 +1,14 @@
 # Weigh My Pack Project
 
-The **Weigh My Pack** project is a full-stack application that allows users to track and manage the weight of their backpacking gear. The app consists of a **Django REST API** backend and a **React** frontend, which are run separately for development purposes.
+The **Weigh My Pack** project is a full-stack application that allows users to track and manage the weight of their backpacking gear. The app consists of a **Django REST API** backend and a **React** frontend.
+
+[Website](https://weigh-my-pack-react.onrender.com/)
 
 ## Features
 
-- **Backend**: Django REST API to handle user authentication, data storage, and provide API endpoints for the frontend.
-- **Frontend**: React (created with Create React App) to display and interact with the data provided by the backend.
-- **Environment Configuration**: Uses environment variables for both backend and frontend for secure configuration.
+- **Track your gear weight**: Add gear items, categorize them, and visualize the weight breakdown in a doughnut chart
+- **Share Lists**: Share your pack gear list to others as a link
+- **User Log in and Local Functionality**: Users are able to create lists that store to their localStorage on their browser if they don't want to log in
 
 ## Technologies Used
 
@@ -133,7 +135,7 @@ Make sure you have Node.js and npm installed.
 
 - Start the React development server:
     ```bash
-    npm run dev
+    npm start
     ```
 
 Your React frontend should now be running at `http://localhost:3000/`.
