@@ -71,6 +71,11 @@ os.environ.setdefault("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://loca
 os.environ.setdefault("EMAIL_HOST_USER", "your-email@gmail.com")
 os.environ.setdefault("EMAIL_HOST_PASSWORD", "your-app-password")
 ```
+- Set up the database:
+    ```bash
+    python manage.py makemigrations
+    python manage.py migrate
+    ```
 
 - Run the Django development server:
     ```bash
