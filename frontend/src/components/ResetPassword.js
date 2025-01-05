@@ -37,11 +37,11 @@ export default function ResetPassword() {
   return (
     <div>
       <p>Reset Password</p>
-      
+
       {apiResponse === "" && (
         <form onSubmit={handleSubmit}>
           <label htmlFor="" className="label">
-            Password
+            New Password
           </label>
           <input
             type="password"
