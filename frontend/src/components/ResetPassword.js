@@ -37,9 +37,7 @@ export default function ResetPassword() {
   return (
     <div>
       <p>Reset Password</p>
-      <p>{uidb64}</p>
-      <p>{token}</p>
-
+      
       {apiResponse === "" && (
         <form onSubmit={handleSubmit}>
           <label htmlFor="" className="label">
