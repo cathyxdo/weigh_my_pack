@@ -4,6 +4,8 @@ The **Weigh My Pack** project is a full-stack application that allows users to t
 
 [Website](https://weigh-my-pack-react.onrender.com/)
 
+[Example Pack List](https://weigh-my-pack-react.onrender.com/#/73vGDoxAvHST5jEdvjvmS5)
+
 ## Features
 
 - **Track your gear weight**: Add gear items, categorize them, and visualize the weight breakdown in a doughnut chart
