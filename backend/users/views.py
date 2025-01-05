@@ -10,6 +10,7 @@ from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from .utils import send_reset_password_email
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.conf import settings
 
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
@@ -61,7 +62,8 @@ class PasswordResetRequestView(APIView):
 
         # Encode the user's email and token in the reset link
         uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
-        reset_link = f'http://localhost:3000/reset-password/{uidb64}/{token}/'
+        frontend_url = settings.FRONTEND_URL
+        reset_link = f'{frontend_url}/reset-password/{uidb64}/{token}/'
 
         send_reset_password_email(user, reset_link)
 
