@@ -19,19 +19,24 @@ export default function ListName({
       axiosInstance
         .delete(url)
         .then((result) => {
-          updateStateDeleteCategory();
+          updateStateDeleteList();
           onSelect(index - 1);
         })
         .catch((err) => {
           console.log(err);
         });
     } else {
-      updateStateDeleteCategory();
+      updateStateDeleteList();
       onSelect(index - 1);
-      localStorage.setItem("localList", JSON.stringify(apiList));
     }
-    function updateStateDeleteCategory() {
-      setApiList(apiList.filter((list) => list.id !== id));
+    function updateStateDeleteList() {
+      setApiList((prevList) => {
+        const updatedList = prevList.filter((list) => list.id !== id);
+        if (!isLoggedIn) {
+          localStorage.setItem("localList", JSON.stringify(updatedList));
+        }
+        return updatedList;
+      });
     }
   }
 
