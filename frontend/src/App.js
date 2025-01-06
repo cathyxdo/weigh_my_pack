@@ -177,7 +177,7 @@ function App() {
           </svg>
         </button>
       </div>
-      <div className={"mobileMenu " + (showSideBar ? "showBar" : "hideBar")}>
+{/*       <div className={"mobileMenu " + (showSideBar ? "showBar" : "hideBar")}>
         <button
           className="showListsButton"
           onClick={() => setShowSideBar(true)}
@@ -208,7 +208,7 @@ function App() {
           </svg>
         </button>
       </div>
-
+ */}
       {apiList && (
         <ListDetails
           showSideBar={showSideBar}

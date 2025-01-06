@@ -214,10 +214,6 @@ div {
 .collapsedSideBar.showBar {
   display: none;
 }
-.mobileMenu.showBar {
-  display: none;
-}
-
 .listDetails {
   margin-left: 300px;
   padding: 60px 30px;
@@ -807,9 +803,6 @@ form a:hover {
     padding-left: 8px;
     padding-right: 8px;
   }
-  .mobileMenu {
-    display: block;
-  }
   .chart-details {
     flex-direction: column-reverse;
   }
@@ -830,12 +823,6 @@ form a:hover {
   }
   .donut-chart {
     height: 200px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .mobileMenu {
-    display: none;
   }
 }
 @media screen and (max-width: 576px) {
