@@ -62,8 +62,8 @@ These variables are required for enabling email functionality via Gmail's SMTP s
 ### 1. Clone Repository
 - Clone directory and navigate to project folder
     ```bash
-    git clone https://github.com/cathyxdo/weigh_my_pack.git
-    cd backpack
+    git clone git@github.com:cathyxdo/weigh_my_pack.git
+    cd weigh_my_pack
     ```
 ### 2. Backend Setup (Django REST API)
 - Navigate to backend directory
