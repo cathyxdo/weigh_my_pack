@@ -817,8 +817,9 @@ form a:hover {
   .donut-chart {
     height: 200px;
   }
-  .tablerow {
-    border-left: none;
+  .tablerow:not(.tableheader):hover {
+    background-color: transparent; /* Reset the background color */
+    border-left: none; /* Remove the border */
   }
 }
 @media screen and (max-width: 576px) {
