@@ -109,9 +109,6 @@ td {
   font-size: small;
   height: 30px;
 }
-.shareView td {
-  height: 20px;
-}
 td:focus {
   outline: solid 2px rgb(75, 124, 177);
 }
@@ -579,10 +576,6 @@ thead th {
 }
 .tableCategoryName {
   font-size: 1.2em;
-}
-
-td {
-  line-height: 10px;
 }
 
 .donut-chart {
