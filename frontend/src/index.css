@@ -817,6 +817,9 @@ form a:hover {
   .donut-chart {
     height: 200px;
   }
+  .tablerow {
+    border-left: none;
+  }
 }
 @media screen and (max-width: 576px) {
   .item-form .quantity {
