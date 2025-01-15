@@ -84,7 +84,7 @@ export default function Category({
     event.preventDefault();
     if (isLoggedIn) {
       axios
-        .patch("/api/categories/" + category.id + "/", { name: categoryName })
+        .patch(process.env.REACT_APP_API_BASE_URL + "/api/categories/" + category.id + "/", { name: categoryName })
         .then((result) => {
           updateStateEditCategory();
           setEditing(false);
