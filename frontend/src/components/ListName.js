@@ -45,7 +45,7 @@ export default function ListName({
       <li className="listName" onClick={(e) => onSelect(index)}>
         {name}
       </li>
-      <li className="listNameIcon" onClick={() => console.log("hi")}>
+      <li className="listNameIcon">
         <svg
           className="deleteList"
           onClick={handleDelete}
