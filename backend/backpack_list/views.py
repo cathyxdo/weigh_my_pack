@@ -4,10 +4,6 @@ from .serializers import ListSerializer, CategorySerializer, ItemSerializer, Use
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
-class UserListView(generics.ListCreateAPIView):
-    queryset = NewUser.objects.all()
-    serializer_class = UserSerializer
-
 class ListList(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = List.objects.all()

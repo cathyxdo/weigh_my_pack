@@ -6,14 +6,12 @@ from .views import (
     CreateCategory,
     CreateItem,
     SingleList,
-    UserListView
 )
 
 app_name = 'backpack_list'  
 
 urlpatterns = [
     path('lists/', ListList.as_view(), name='lists'),
-    path('users/lists/', UserListView.as_view(), name='user_lists'),
     path('lists/<str:pk>/', SingleList.as_view(), name='list_modify'),
     path('categories/<int:pk>/', ModifyCategory.as_view(), name='category_modify'),
     path('categories/', CreateCategory.as_view(), name='create_category'),
