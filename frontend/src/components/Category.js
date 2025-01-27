@@ -1,6 +1,6 @@
 import Item from "./Item";
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../axios";
 import { v4 as uuidv4 } from "uuid";
 
 export default function Category({
@@ -36,7 +36,7 @@ export default function Category({
     event.preventDefault();
 
     if (isLoggedIn) {
-      axios
+      axiosInstance
         .post(process.env.REACT_APP_API_BASE_URL + "items/", itemData)
         .then((result) => {
           setApiList(updateList(result.data));
@@ -83,7 +83,7 @@ export default function Category({
   function handleSubmitCategory(event) {
     event.preventDefault();
     if (isLoggedIn) {
-      axios
+      axiosInstance
         .patch(process.env.REACT_APP_API_BASE_URL + "categories/" + category.id + "/", { name: categoryName })
         .then((result) => {
           updateStateEditCategory();

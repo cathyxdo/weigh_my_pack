@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../axios";
 
 export default function ModalDeleteCategory({
   categoryId,
@@ -12,7 +12,7 @@ export default function ModalDeleteCategory({
     event.preventDefault();
 
     if (isLoggedIn) {
-      axios
+      axiosInstance
         .delete(
           process.env.REACT_APP_API_BASE_URL + "categories/" + categoryId + "/"
         )

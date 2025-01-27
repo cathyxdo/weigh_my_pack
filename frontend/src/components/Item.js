@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from "../axios";
 import { useState, useEffect, useRef } from "react";
 
 export default function Item({
@@ -33,7 +33,7 @@ export default function Item({
     event.preventDefault();
 
     if (isLoggedIn) {
-      axios
+      axiosInstance
         .patch(
           process.env.REACT_APP_API_BASE_URL + "items/" + item.id + "/",
           itemData
@@ -89,8 +89,8 @@ export default function Item({
     event.preventDefault();
 
     if (isLoggedIn) {
-      axios
-        .delete("/api/items/" + item.id + "/")
+      axiosInstance
+        .delete("/items/" + item.id + "/")
         .then((result) => {
           updateStateDeleteItem();
         })

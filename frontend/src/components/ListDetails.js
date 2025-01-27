@@ -1,7 +1,6 @@
 import Category from "./Category";
 import { useState } from "react";
 import ChartSection from "./ChartSection";
-import axios from "axios";
 import axiosInstance from "../axios";
 import Header from "./Header";
 import { v4 as uuidv4 } from "uuid";
@@ -40,7 +39,7 @@ export default function ListDetails({
     const data = { name: newCategory, list: list.id };
 
     if (isLoggedIn) {
-      axios
+      axiosInstance
         .post(process.env.REACT_APP_API_BASE_URL + "categories/", data)
         .then((result) => {
           setApiList(updateList(result.data));
