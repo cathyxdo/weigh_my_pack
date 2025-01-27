@@ -217,7 +217,7 @@ export default function ListDetails({
               onClick={() => setShowCategoryForm(true)}
             >
               <div className="category-line"></div>
-              <h3>Add Category</h3>
+              <div>Add Category</div>
               <div className="category-line"></div>
             </button>
           )}
