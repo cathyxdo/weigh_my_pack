@@ -42,8 +42,7 @@ axiosInstance.interceptors.response.use(
 
     if (
       error.response.data.code === "token_not_valid" &&
-      error.response.status === 401 &&
-      error.response.statusText === ""
+      error.response.status === 401 
     ) {
       const refreshToken = localStorage.getItem("refresh_token");
 
