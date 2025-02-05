@@ -188,8 +188,6 @@ export default function ListDetails({
           ))}
           {showCategoryForm && (
             <form className="edit-form" onSubmit={handleSubmit}>
-              <br></br>
-              <br></br>
               <input
                 className="edit-input"
                 value={newCategory}
