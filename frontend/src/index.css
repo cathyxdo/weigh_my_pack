@@ -25,9 +25,7 @@
 }
 body {
   color: var(--color-font-black);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Apple Color Emoji", Helvetica, Arial, sans-serif, "Segoe UI Emoji",
-    "Segoe UI Symbol";
+  font-family:  IBM Plex Sans, Roboto, Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   margin: 0px 0px 0px 0px;
   height: 100%;
 }
@@ -54,9 +52,10 @@ button {
   background: none;
   border: none;
   color: var(--color-dark-grey);
+  margin-top: 20px;
 }
 .add-category:hover {
-  color: var(--color-dark-orange);
+  color: var(--color-red);
 }
 
 .add-category > * {
@@ -68,7 +67,7 @@ button {
   content: "";
 }
 .add-category:hover > .category-line {
-  background: var(--color-dark-orange);
+  background: var(--color-red);
 }
 .delete-category-wrapper {
   position: relative;
@@ -224,7 +223,6 @@ div {
 
 
 .edit-input {
-  height: 30px;
   width: 50%;
   font-size: 16px;
   font-weight: 800;
@@ -291,13 +289,11 @@ div {
   color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
   font-size: 16px;
   font-weight: 500;
   list-style: none;
   outline: none;
-  padding: 6px 20px;
+  padding: 6px 16px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -327,14 +323,11 @@ div {
   color: #000000;
   cursor: pointer;
   display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
   font-size: 16px;
   font-weight: 500;
   list-style: none;
-
   outline: none;
-  padding: 6px 20px;
+  padding: 6px 16px;
   position: relative;
   text-align: center;
   text-decoration: none;
