@@ -780,6 +780,10 @@ form a:hover {
   background-color: var(--color-light-grey);
   border-radius: 4px;
 }
+#changepass {
+  font-weight: 400;
+  font-size: 14px;
+}
 
 @media screen and (max-width: 768px) {
   .sidebar {
