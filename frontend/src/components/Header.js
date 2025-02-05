@@ -19,10 +19,10 @@ export default function Header({ isLoggedIn }) {
       {!isLoggedIn && (
         <>
           <Link to="/signup">
-            <button className="secondary-button">Sign Up</button>
+            <button className="primary-button">Sign Up</button>
           </Link>
           <Link to="/login">
-            <button className="primary-button">Login</button>
+            <button className="secondary-button">Login</button>
           </Link>
         </>
       )}
