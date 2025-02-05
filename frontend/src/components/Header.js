@@ -28,10 +28,10 @@ export default function Header({ isLoggedIn }) {
       )}
       {isLoggedIn && (
         <>
-          <button className="primary-button" onClick={logout}>
+          <button className="secondary-button" onClick={logout}>
             Logout
           </button>
-          <Link to="/changepassword">Change Password</Link>
+          <Link to="/changepassword" id="changepass">Change Password</Link>
         </>
       )}
     </div>
