@@ -220,6 +220,25 @@ export default function Category({
               onChange={handleChange}
             ></input>
           </div>
+          <div>
+            <label htmlFor="description">Description</label>
+            <input
+                type="number"
+                name="qty"
+                min="0"
+                value={itemData.qty}
+                onChange={handleChange}
+              ></input>
+            </div>
+          <div>
+            <label htmlFor="link">Link</label>
+            <input
+              type="link"
+              name="link"
+              value={itemData.link}
+              onChange={handleChange}
+            ></input>
+          </div>
           <div className="quantity">
             <div>
               <label htmlFor="qty">Qty*</label>
@@ -254,25 +273,6 @@ export default function Category({
                 <option value="kg">kg</option>
               </select>
             </div>
-          </div>
-
-          <div>
-            <label htmlFor="description">Description</label>
-            <input
-              type="text"
-              name="description"
-              value={itemData.description}
-              onChange={handleChange}
-            ></input>
-          </div>
-          <div>
-            <label htmlFor="link">Link</label>
-            <input
-              type="link"
-              name="link"
-              value={itemData.link}
-              onChange={handleChange}
-            ></input>
           </div>
           <div className="requiredfield">* Required Field</div>
           <div className="button-row">
