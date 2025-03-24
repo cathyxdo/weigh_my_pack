@@ -223,10 +223,9 @@ export default function Category({
           <div>
             <label htmlFor="description">Description</label>
             <input
-                type="number"
-                name="qty"
-                min="0"
-                value={itemData.qty}
+                type="text"
+                name="description"
+                value={itemData.description}
                 onChange={handleChange}
               ></input>
             </div>
