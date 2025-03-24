@@ -12,7 +12,12 @@ The **Weigh My Pack** project is a full-stack application that allows users to t
 - **User Log in and Local Functionality**: Users are able to create lists that store to their localStorage on their browser if they don't want to log in
 
 ## Screenshots
-INSERT SCREENSHOTS HERE
+User's Dashboard Page
+![Dashboard](screenshots/Dashboard.png)
+
+Edit Item
+![Dashboard](screenshots/EditItem.png)
+
 ## Technologies Used
 
 - **Backend**: Django REST Framework
