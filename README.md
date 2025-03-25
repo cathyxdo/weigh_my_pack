@@ -162,10 +162,6 @@ Both the backend and frontend can be deployed separately or together, depending 
 - Mark items as consummable (i.e. many backpackers like to track their food weight, but don't consider it in the overall pack weight)
 - Change Colors in the Graph
 
-## Contributing
-
-Feel free to fork the project and submit pull requests for any improvements, bug fixes, or new features!
-
 ## License
 
 This project is open-source and available under the MIT License.
