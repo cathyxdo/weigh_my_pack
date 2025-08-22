@@ -2,9 +2,6 @@
 
 The **Weigh My Pack** project is a full-stack application that allows users to track and manage the weight of their backpacking gear. The app consists of a **Django REST API** backend and a **React** frontend.
 
-- **Live Site:** [WeighMyPack.app](https://weighmypack.app/)
-
-- **Example:** [Cathy's Backpacking List](https://weighmypack.app/#/73vGDoxAvHST5jEdvjvmS5)
 
 ## Features
 
